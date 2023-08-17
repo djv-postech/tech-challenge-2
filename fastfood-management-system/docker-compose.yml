@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4.0.3
+    ports:
+      - "27017:27017"
+    networks:
+      - my_net
+  api:
+    image: tech-challenge:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    networks:
+      - my_net
+
+networks:
+  my_net:
+    driver: bridge
