@@ -3,13 +3,14 @@ package com.fiap.postech.fastfoodsystemcore.domain.entities.cliente;
 import java.util.List;
 
 public interface ClienteRepository {
-  void cadastrarCliente(Cliente cliente);
 
-  Cliente retornarClientePorCpf(String CPF);
+  Cliente cadastrarCliente(Cliente cliente);
 
-  void removerCliente(String CPF);
-
+  Cliente identificaClientePorCpf(String cpf);
+  
   Cliente atualizarCliente(Cliente cliente);
 
   List<Cliente> listarClientes();
+
+  void excluirClientePorCpf(String cpf);
 }

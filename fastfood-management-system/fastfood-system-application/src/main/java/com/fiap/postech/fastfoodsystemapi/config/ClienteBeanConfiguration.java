@@ -1,8 +1,8 @@
 package com.fiap.postech.fastfoodsystemapi.config;
 
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.CadastrarCliente;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.ListarClientes;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.CadastroDeCliente;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.ListagemDeCliente;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,13 +16,13 @@ public class ClienteBeanConfiguration {
     }
 
     @Bean
-    public CadastrarCliente cadastrarCliente(){
-        return new CadastrarCliente(clienteRepository);
+    public CadastroDeCliente cadastrarCliente(){
+        return new CadastroDeCliente(clienteRepository);
     }
 
     @Bean
-    public ListarClientes listarClientes(){
-        return new ListarClientes(clienteRepository);
+    public ListagemDeCliente listarClientes(){
+        return new ListagemDeCliente(clienteRepository);
     }
 
 }

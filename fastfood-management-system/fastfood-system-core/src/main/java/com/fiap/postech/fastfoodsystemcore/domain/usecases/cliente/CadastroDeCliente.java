@@ -5,17 +5,16 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
 
 
-public class CadastrarCliente {
+public class CadastroDeCliente {
 
   private final ClienteRepository clienteRepository;
 
-  public CadastrarCliente(ClienteRepository clienteRepository) {
+  public CadastroDeCliente(ClienteRepository clienteRepository) {
     this.clienteRepository = clienteRepository;
   }
 
-  public void cadastrarCliente(Cliente cliente) {
-    this.clienteRepository.cadastrarCliente(cliente);
+  public Cliente cadastrar(Cliente cliente) {
+   return this.clienteRepository.cadastrarCliente(cliente);
   }
-
 
 }
