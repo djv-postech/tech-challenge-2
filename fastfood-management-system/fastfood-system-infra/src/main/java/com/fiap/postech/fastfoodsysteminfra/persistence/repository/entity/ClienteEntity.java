@@ -21,7 +21,7 @@ public class ClienteEntity {
   }
 
   public static ClienteEntity from(Cliente cliente) {
-    return new ClienteEntity(cliente.getNome(), cliente.getCpf(), cliente.getEmail());
+    return new ClienteEntity(cliente.getNome(), cliente.getCpf(), cliente.getEmail().getEndereco());
   }
 
   public String getNome() {
@@ -51,7 +51,7 @@ public class ClienteEntity {
   public ClienteEntity(Cliente cliente) {
     this.nome = cliente.getNome();
     this.cpf = cliente.getCpf();
-    this.email = cliente.getEmail();
+    this.email = cliente.getEmail().getEndereco();
   }
 
   public ClienteEntity() {}

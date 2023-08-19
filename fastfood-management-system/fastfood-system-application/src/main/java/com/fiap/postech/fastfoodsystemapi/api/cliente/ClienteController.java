@@ -5,6 +5,8 @@ import com.fiap.postech.fastfoodsystemapi.api.cliente.records.DadosCadastroClien
 import com.fiap.postech.fastfoodsystemapi.api.cliente.records.DadosCliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.*;
+import com.fiap.postech.fastfoodsystemcore.domain.vo.CPF;
+import com.fiap.postech.fastfoodsystemcore.domain.vo.Email;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -39,13 +41,13 @@ public class ClienteController {
 
   @Operation(summary = "Cadastra novo cliente")
   @PostMapping
-  public ResponseEntity<DadosCadastroCliente> cadastrar(
-          @Valid @RequestBody DadosCadastroCliente dadosCadastroCliente, UriComponentsBuilder builder) {
+  public ResponseEntity<DadosCliente> cadastrar(
+          @Valid @RequestBody DadosCadastroCliente dadosCadastroCliente) {
 
-    Cliente clienteCadastrado = cadastroDeCliente.cadastrar(dadosCadastroCliente.convertToCliente());
+    Cliente dadosCliente = cadastroDeCliente.cadastrar(dadosCadastroCliente.convertToCliente());
 
-    return ResponseEntity.ok(new DadosCadastroCliente(clienteCadastrado.getNome(),
-            clienteCadastrado.getCpf(), clienteCadastrado.getEmail()));
+    return ResponseEntity.ok(new DadosCliente(dadosCliente.getNome(),
+            dadosCliente.getCpf(), dadosCliente.getEmail().getEndereco()));
   }
 
   @Operation(summary = "Identifica cliente pelo CPF")
@@ -69,7 +71,8 @@ public class ClienteController {
   @Operation(summary = "Atualiza cliente")
   @PutMapping("/{cpf}")
   public ResponseEntity<DadosCliente> atualizarCliente(@PathVariable String cpf, @Valid @RequestBody DadosCadastroCliente dadosCadastroCliente){
-    Cliente cliente = atualizacaoDeCliente.atualizarCliente(cpf, new Cliente(dadosCadastroCliente.nome(), dadosCadastroCliente.cpf(), dadosCadastroCliente.email()));
+    Cliente cliente = atualizacaoDeCliente.atualizarCliente(cpf,
+            new Cliente(dadosCadastroCliente.nome(), new CPF(dadosCadastroCliente.cpf()), new Email(dadosCadastroCliente.email())));
     return ResponseEntity.ok(new DadosCliente(cliente));
   }
 

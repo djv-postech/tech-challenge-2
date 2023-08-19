@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 public record DadosCadastroCliente(String nome, @NotNull @CPF(message = "CPF inválido") String cpf, @Email(message = "E-mail inválido") String email) {
 
     public Cliente convertToCliente() {
-        return new Cliente(nome, cpf, email);
+        return new Cliente(nome, new com.fiap.postech.fastfoodsystemcore.domain.vo.CPF(cpf),
+                new com.fiap.postech.fastfoodsystemcore.domain.vo.Email(email));
     }
 }

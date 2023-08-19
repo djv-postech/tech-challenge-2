@@ -6,6 +6,6 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 public record DadosCliente(String nome, String cpf, String email) {
 
   public DadosCliente(Cliente dadosCliente) {
-    this(dadosCliente.getNome(), dadosCliente.getCpf(), dadosCliente.getEmail());
+    this(dadosCliente.getNome(), dadosCliente.getCpf(), dadosCliente.getEmail().getEndereco());
   }
 }

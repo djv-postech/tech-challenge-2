@@ -1,13 +1,15 @@
 package com.fiap.postech.fastfoodsystemcore.domain.entities.cliente;
 
+import com.fiap.postech.fastfoodsystemcore.domain.vo.CPF;
+import com.fiap.postech.fastfoodsystemcore.domain.vo.Email;
+
 public class  Cliente {
 
   private String nome;
-  private String cpf;
+  private final CPF cpf;
+  private Email email;
 
-  private String email;
-
-  public Cliente(String nome, String cpf, String email) {
+  public Cliente(String nome, CPF cpf, Email email) {
     this.nome = nome;
     this.cpf = cpf;
     this.email = email;
@@ -22,18 +24,14 @@ public class  Cliente {
   }
 
   public String getCpf() {
-    return cpf;
+    return cpf.getNumero();
   }
 
-  public void setCpf(String cpf) {
-    this.cpf = cpf;
-  }
-
-  public String getEmail() {
+  public Email getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(Email email){
     this.email = email;
   }
 }
