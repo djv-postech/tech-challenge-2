@@ -1,14 +1,12 @@
 package com.fiap.postech.fastfoodsysteminfra.persistence.repository;
 
-import com.fiap.postech.fastfoodsystemcore.domain.ClienteNaoEncontradoException;
+import com.fiap.postech.fastfoodsysteminfra.persistence.exception.ClienteNaoEncontradoException;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.ClienteConverter;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.entity.ClienteEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

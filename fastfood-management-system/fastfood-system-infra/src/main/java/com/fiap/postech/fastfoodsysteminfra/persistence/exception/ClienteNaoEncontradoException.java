@@ -1,4 +1,4 @@
-package com.fiap.postech.fastfoodsystemcore.domain;
+package com.fiap.postech.fastfoodsysteminfra.persistence.exception;
 
 public class ClienteNaoEncontradoException extends RuntimeException {
 

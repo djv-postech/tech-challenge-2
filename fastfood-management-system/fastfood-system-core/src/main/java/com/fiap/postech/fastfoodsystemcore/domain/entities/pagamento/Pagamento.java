@@ -30,6 +30,13 @@ public class Pagamento {
 
   public Pagamento() {}
 
+  public Pagamento(LocalDateTime dataPagamento, StatusPagamento statusPagamento, TipoPagamento tipoPagamento, BigDecimal totalPagamento) {
+     this.dataPagamento = dataPagamento;
+     this.statusPagamento = statusPagamento;
+     this.tipoPagamento = tipoPagamento;
+     this.totalPagamento = totalPagamento;
+  }
+
   public String getId() {
     return id;
   }

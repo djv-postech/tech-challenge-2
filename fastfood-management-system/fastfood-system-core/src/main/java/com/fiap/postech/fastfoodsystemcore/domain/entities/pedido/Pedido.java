@@ -32,6 +32,19 @@ public class Pedido {
         this.dataCriacaoPedido = dataCriacaoPedido;
     }
 
+    public Pedido(
+            Cliente cliente,
+            List<Produto> produtos,
+            Pagamento pagamento,
+            StatusPedido statusPedido,
+            LocalDateTime dataCriacaoPedido) {
+        this.produtos = produtos;
+        this.cliente = cliente;
+        this.pagamento = pagamento;
+        this.statusPedido = statusPedido;
+        this.dataCriacaoPedido = dataCriacaoPedido;
+    }
+
     public String getId() {
         return id;
     }
