@@ -13,7 +13,7 @@ public class InformacoesDePagamentoDoPedido {
     }
 
     public StatusPagamento verificaStatusPagamentoPedido(String numeroPedido){
-        Pedido pedido = this.pedidoRepository.listarPedidoPorId(numeroPedido);
+        Pedido pedido = this.pedidoRepository.listarPedidoPorNumeroPedido(numeroPedido);
         return pedido.getPagamento().getStatusPagamento();
     }
 

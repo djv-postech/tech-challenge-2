@@ -13,7 +13,7 @@ public class AtualizacaoDePedido {
     }
 
     public Pedido atualizarPedido(String id, StatusPedido statusPedido) {
-        final Pedido pedido = pedidoRepository.listarPedidoPorId(id);
+        final Pedido pedido = pedidoRepository.listarPedidoPorNumeroPedido(id);
 
         pedido.setStatus(statusPedido);
 

@@ -3,7 +3,7 @@ package com.fiap.postech.fastfoodsysteminfra.persistence.repository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Categoria;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.ProdutoRepository;
-import com.fiap.postech.fastfoodsysteminfra.persistence.exception.ProdutoNaoEncontradoException;
+import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.ProdutoConverter;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.entity.ProdutoEntity;
 import lombok.RequiredArgsConstructor;
@@ -38,14 +38,14 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
     public Produto listarProdutoPorNome(String nome) {
         return produtoRepositoryMongo.findByNome(nome)
                 .map(produtoConverter::convertFrom)
-                .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto: "+ nome +" não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Produto: "+ nome +" não encontrado"));
     }
 
     @Override
     public Produto listarProdutoPorId(String id) {
         return produtoRepositoryMongo.findById(id)
                 .map(produtoConverter::convertFrom)
-                .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto de Id: "+ id +" não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Produto de Id: "+ id +" não encontrado"));
     }
 
     @Override

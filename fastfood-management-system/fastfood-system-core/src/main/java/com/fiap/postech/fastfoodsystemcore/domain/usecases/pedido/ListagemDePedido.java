@@ -22,7 +22,7 @@ public class ListagemDePedido {
     }
 
     public Pedido listarPedidoPorNumeroPedido(String idPedido) {
-        return this.pedidoRepository.listarPedidoPorId(idPedido);
+        return this.pedidoRepository.listarPedidoPorNumeroPedido(idPedido);
     }
 
     public List<Pedido> listarPedidosOrdenadosPorRecebimentoEStatus() {

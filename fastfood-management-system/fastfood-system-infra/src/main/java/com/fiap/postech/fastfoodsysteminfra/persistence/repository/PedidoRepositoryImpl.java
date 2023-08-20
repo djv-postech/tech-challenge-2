@@ -3,6 +3,7 @@ package com.fiap.postech.fastfoodsysteminfra.persistence.repository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.PedidoRepository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
+import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.PedidoConverter;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.entity.PedidoEntity;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +32,10 @@ public class PedidoRepositoryImpl implements PedidoRepository {
   }
 
   @Override
-  public Pedido listarPedidoPorId(String id) {
-    return pedidoRepositoryMongo.findById(id)
+  public Pedido listarPedidoPorNumeroPedido(String numeroPedido) {
+    return pedidoRepositoryMongo.findById(numeroPedido)
             .map(pedidoConverter::convertFrom)
-            .orElseThrow(() -> new RuntimeException("Pedido de Id: "+ id +" não encontrado"));
+            .orElseThrow(() -> new NotFoundException("Pedido de Id: "+ numeroPedido +" não encontrado"));
   }
 
   @Override

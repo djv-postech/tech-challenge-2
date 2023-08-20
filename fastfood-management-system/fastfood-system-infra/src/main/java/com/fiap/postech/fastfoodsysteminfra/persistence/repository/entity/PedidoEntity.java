@@ -17,7 +17,7 @@ import java.util.List;
 public class PedidoEntity {
 
     @Id
-    private String id;
+    private String numeroPedido;
     private List<Produto> produtos;
     private Cliente cliente;
     private Pagamento pagamento;
@@ -25,7 +25,7 @@ public class PedidoEntity {
     private LocalDateTime dataCriacaoPedido;
 
     public PedidoEntity(Pedido pedido) {
-        this.id = pedido.getId();
+        this.numeroPedido = pedido.getNumeroPedido();
         this.produtos = pedido.getProdutos();
         this.cliente = pedido.getCliente();
         this.pagamento = pedido.getPagamento();
@@ -34,13 +34,13 @@ public class PedidoEntity {
     }
 
     public PedidoEntity(
-            String id,
+            String numeroPedido,
             List<Produto> produtos,
             Cliente cliente,
             Pagamento pagamento,
             StatusPedido statusPedido,
             LocalDateTime dataCriacaoPedido) {
-        this.id = id;
+        this.numeroPedido = numeroPedido;
         this.produtos = produtos;
         this.cliente = cliente;
         this.pagamento = pagamento;
@@ -52,8 +52,8 @@ public class PedidoEntity {
 
     }
 
-    public String getId() {
-        return id;
+    public String getNumeroPedido() {
+        return numeroPedido;
     }
 
     public List<Produto> getProdutos() {

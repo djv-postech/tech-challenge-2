@@ -25,7 +25,7 @@ public record DadosPedido(
 
   public DadosPedido(Pedido dadosPedido) {
     this(
-        dadosPedido.getId(),
+        dadosPedido.getNumeroPedido(),
         dadosPedido.getProdutos().stream().map(DadosProduto::new).collect(
             Collectors.toList()),
         isNull(dadosPedido.getCliente())? null: new DadosCliente(dadosPedido.getCliente()),

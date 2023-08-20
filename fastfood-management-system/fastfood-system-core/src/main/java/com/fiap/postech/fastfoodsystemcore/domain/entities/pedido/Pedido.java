@@ -9,22 +9,21 @@ import java.util.List;
 
 public class Pedido {
 
-    private String id;
-    private List<Produto> produtos;
-
-    private Cliente cliente;
+    private String numeroPedido;
+    private final List<Produto> produtos;
+    private final Cliente cliente;
     private Pagamento pagamento;
     private StatusPedido statusPedido;
-    private LocalDateTime dataCriacaoPedido;
+    private final LocalDateTime dataCriacaoPedido;
 
     public Pedido(
-            String id,
+            String numeroPedido,
             Cliente cliente,
             List<Produto> produtos,
             Pagamento pagamento,
             StatusPedido statusPedido,
             LocalDateTime dataCriacaoPedido) {
-        this.id = id;
+        this.numeroPedido = numeroPedido;
         this.produtos = produtos;
         this.cliente = cliente;
         this.pagamento = pagamento;
@@ -45,8 +44,8 @@ public class Pedido {
         this.dataCriacaoPedido = dataCriacaoPedido;
     }
 
-    public String getId() {
-        return id;
+    public String getNumeroPedido() {
+        return numeroPedido;
     }
 
     public List<Produto> getProdutos() {

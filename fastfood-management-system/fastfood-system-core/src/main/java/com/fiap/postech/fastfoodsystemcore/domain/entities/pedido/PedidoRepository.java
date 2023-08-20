@@ -9,7 +9,7 @@ public interface PedidoRepository {
 
   Pedido atualizarPedido(Pedido pedido);
 
-  Pedido listarPedidoPorId(String id);
+  Pedido listarPedidoPorNumeroPedido(String numeroPedido);
 
   List<Pedido> listarPedidosPorStatus(StatusPedido status);
 
