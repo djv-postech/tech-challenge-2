@@ -1,4 +1,4 @@
-package com.fiap.postech.fastfoodsystemapi.config;
+package com.fiap.postech.fastfoodsystemapi.config.beans;
 
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.*;

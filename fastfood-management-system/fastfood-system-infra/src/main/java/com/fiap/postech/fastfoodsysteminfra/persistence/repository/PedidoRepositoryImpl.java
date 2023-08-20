@@ -45,7 +45,10 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 
   @Override
   public List<Pedido> listarPedidos() {
-    return pedidoRepositoryMongo.findAll().stream().map(pedidoConverter::convertFrom).collect(Collectors.toList());
+    return pedidoRepositoryMongo.findAll()
+            .stream()
+            .map(pedidoConverter::convertFrom)
+            .collect(Collectors.toList());
   }
 
   @Override

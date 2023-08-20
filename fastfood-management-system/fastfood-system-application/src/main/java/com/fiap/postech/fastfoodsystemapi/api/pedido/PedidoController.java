@@ -2,12 +2,11 @@ package com.fiap.postech.fastfoodsystemapi.api.pedido;
 
 import com.fiap.postech.fastfoodsystemapi.api.pedido.records.DadosCadastroPedido;
 import com.fiap.postech.fastfoodsystemapi.api.pedido.records.DadosPedido;
+import com.fiap.postech.fastfoodsystemapi.api.pedido.records.StatusPagamentoPedido;
+import com.fiap.postech.fastfoodsystemcore.domain.entities.pagamento.StatusPagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.AtualizacaoDePedido;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.CadastroDePedido;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ExclusaoDePedido;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedido;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -28,8 +27,9 @@ public class PedidoController {
   private final CadastroDePedido cadastroDePedido;
   private final ListagemDePedido listagemDePedido;
   private final AtualizacaoDePedido atualizacaoDePedido;
+  //private final InformacoesDePagamentoDoPedido informacoesPagamentoPedido;
 
-  @Operation(summary = "Cadastro de novos pedidos")
+  @Operation(summary = "Checkout de Pedidos")
   @PostMapping
   public ResponseEntity<DadosPedido> cadastrarPedido(
           @Valid @RequestBody DadosCadastroPedido dadosCadastroPedido) {
@@ -39,10 +39,10 @@ public class PedidoController {
     return ResponseEntity.ok().body(dadosPedido);
   }
 
-  @Operation(summary = "Listagem de pedido por Id")
-  @GetMapping("/{id}")
-  public ResponseEntity<DadosPedido> listarPedido(@PathVariable String id) {
-    Pedido pedido = listagemDePedido.listarPedidoPorId(id);
+  @Operation(summary = "Listagem de pedido por numeroPedido")
+  @GetMapping("/{numeroPedido}")
+  public ResponseEntity<DadosPedido> listarPedido(@PathVariable String numeroPedido) {
+    Pedido pedido = listagemDePedido.listarPedidoPorNumeroPedido(numeroPedido);
     return Objects.nonNull(pedido)
         ? ResponseEntity.ok(new DadosPedido(pedido))
         : ResponseEntity.notFound().build();
@@ -56,19 +56,26 @@ public class PedidoController {
     return ResponseEntity.ok(pedidos.stream().map(DadosPedido::new).collect(Collectors.toList()));
   }
 
-  @Operation(summary = "Listagem de todos os pedidos")
+  @Operation(summary = "Listagem ordernados por recebimento e status")
   @GetMapping("/todos")
   public ResponseEntity<List<DadosPedido>> listarPedidos() {
-    List<Pedido> pedidos = listagemDePedido.listarPedidos();
+    List<Pedido> pedidos = listagemDePedido.listarPedidosOrdenadosPorRecebimentoEStatus();
     return ResponseEntity.ok(pedidos.stream().map(DadosPedido::new).collect(Collectors.toList()));
   }
 
-  //FIXME O Status deve ser enviado em um request param?
   @Operation(summary = "Atualização do status do pedido")
-  @PutMapping("/{id}/{status}")
+  @PutMapping("/{numeroPedido}/{status}")
   public ResponseEntity<DadosPedido> atualizarStatusPedido(
-      @PathVariable String id, @PathVariable("status") final StatusPedido statusPedido) {
-    Pedido pedido = atualizacaoDePedido.atualizarPedido(id, statusPedido);
+      @PathVariable String numeroPedido, @PathVariable("status") final StatusPedido statusPedido) {
+    Pedido pedido = atualizacaoDePedido.atualizarPedido(numeroPedido, statusPedido);
     return ResponseEntity.ok(new DadosPedido(pedido));
+  }
+
+  @Operation(summary = "Verificão do status do pagamento do pedido")
+  @PutMapping("/{numeroPedido}/statusPagamento")
+  public ResponseEntity<StatusPagamentoPedido> verificarStatusPagamentoPedido(@PathVariable String numeroPedido) {
+//    StatusPagamento statusPagamento = informacoesPagamentoPedido.verificaStatusPagamentoPedido(numeroPedido);
+//    return ResponseEntity.ok(new StatusPagamentoPedido(numeroPedido, statusPagamento));
+    return null;
   }
 }

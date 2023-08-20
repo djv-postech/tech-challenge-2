@@ -4,7 +4,9 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.PedidoRepository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListagemDePedido {
 
@@ -19,11 +21,15 @@ public class ListagemDePedido {
         return this.pedidoRepository.listarPedidosPorStatus(statusPedido);
     }
 
-    public Pedido listarPedidoPorId(String idPedido) {
+    public Pedido listarPedidoPorNumeroPedido(String idPedido) {
         return this.pedidoRepository.listarPedidoPorId(idPedido);
     }
 
-    public List<Pedido> listarPedidos() {
-        return this.pedidoRepository.listarPedidos();
+    public List<Pedido> listarPedidosOrdenadosPorRecebimentoEStatus() {
+        return this.pedidoRepository.listarPedidos().stream()
+                .filter(pedido -> pedido.getStatusPedido() != StatusPedido.FINALIZADO)
+                .sorted(Comparator.comparing(Pedido::getDataCriacaoPedido)
+                        .thenComparing(Pedido::getStatusPedido))
+                .collect(Collectors.toList());
     }
 }

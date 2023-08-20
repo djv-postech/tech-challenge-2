@@ -36,7 +36,7 @@ public record DadosCadastroPedido(
 
         private List<Produto> buildProdutos(List<DadosCadastroProduto> cadastroProdutos) {
               return cadastroProdutos.stream()
-                         .map(cadastroProduto -> new Produto(cadastroProduto.nome(), cadastroProduto.descricao(), cadastroProduto.preco(), cadastroProduto.quantidade(),
-                        cadastroProduto.categoria())).collect(Collectors.toList());
+                         .map(cadastroProduto -> new Produto(cadastroProduto.nome(), cadastroProduto.descricao(),
+                                 cadastroProduto.categoria(),cadastroProduto.preco(), cadastroProduto.quantidade())).collect(Collectors.toList());
         }
 }

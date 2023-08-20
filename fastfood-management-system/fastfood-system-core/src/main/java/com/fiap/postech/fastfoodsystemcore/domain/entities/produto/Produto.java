@@ -24,7 +24,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto(String nome, String descricao, BigDecimal preco, int quantidade, Categoria categoria) {
+    public Produto(String nome, String descricao, Categoria categoria, BigDecimal preco, int quantidade) {
         this.nome = nome;
         this.descricao = descricao;
         this.categoria = categoria;
