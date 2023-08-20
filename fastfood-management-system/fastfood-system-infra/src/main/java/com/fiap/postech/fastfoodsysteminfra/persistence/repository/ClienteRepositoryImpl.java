@@ -1,6 +1,6 @@
 package com.fiap.postech.fastfoodsysteminfra.persistence.repository;
 
-import com.fiap.postech.fastfoodsysteminfra.persistence.exception.ClienteNaoEncontradoException;
+import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.ClienteConverter;
@@ -31,10 +31,10 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
-    public Cliente identificaClientePorCpf(String cpf) {
+    public Cliente identificaClientePorCpf(String cpf){
         Optional<ClienteEntity> clienteEntity = clienteRepositoryMongo.findByCpf(cpf);
         return clienteEntity.map(clienteConverter::convertFrom).orElseThrow(
-                () -> new ClienteNaoEncontradoException("Cliente de CPF: " + cpf + " não encontrado"));
+                () -> new NotFoundException("Cliente de CPF: " + cpf + " não encontrado"));
     }
 
 

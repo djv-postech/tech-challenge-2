@@ -39,7 +39,7 @@ public class ClienteController {
     this.atualizacaoDeCliente = atualizacaoDeCliente;
   }
 
-  @Operation(summary = "Cadastra novo cliente")
+  @Operation(summary = "Cadastrar novo cliente")
   @PostMapping
   public ResponseEntity<DadosCliente> cadastrar(
           @Valid @RequestBody DadosCadastroCliente dadosCadastroCliente) {
@@ -50,7 +50,7 @@ public class ClienteController {
             dadosCliente.getCpf(), dadosCliente.getEmail().getEndereco()));
   }
 
-  @Operation(summary = "Identifica cliente pelo CPF")
+  @Operation(summary = "Identificar cliente pelo CPF")
   @GetMapping("/{cpf}")
   public ResponseEntity<DadosCliente> identificarPorCpf(@PathVariable String cpf) {
 
@@ -61,14 +61,14 @@ public class ClienteController {
         : ResponseEntity.notFound().build();
   }
 
-  @Operation(summary = "Deleta cliente por CPF")
+  @Operation(summary = "Remover cliente por CPF")
   @DeleteMapping("/{cpf}")
   public ResponseEntity<DadosCliente> excluirPorCpf(@PathVariable String cpf){
     exclusaoDeCliente.excluirPorCpf(cpf);
     return ResponseEntity.ok().build();
   }
 
-  @Operation(summary = "Atualiza cliente")
+  @Operation(summary = "Atualizar cliente")
   @PutMapping("/{cpf}")
   public ResponseEntity<DadosCliente> atualizarCliente(@PathVariable String cpf, @Valid @RequestBody DadosCadastroCliente dadosCadastroCliente){
     Cliente cliente = atualizacaoDeCliente.atualizarCliente(cpf,
@@ -76,7 +76,7 @@ public class ClienteController {
     return ResponseEntity.ok(new DadosCliente(cliente));
   }
 
-  @Operation(summary = "Lista clientes")
+  @Operation(summary = "Listar clientes")
   @GetMapping("/todos")
   public ResponseEntity<List<DadosCliente>> listarClientes(){
     List<Cliente> clientes = listagemDeCliente.todos();
