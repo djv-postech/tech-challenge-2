@@ -8,17 +8,17 @@ import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.*;
 import com.fiap.postech.fastfoodsystemcore.domain.vo.CPF;
 import com.fiap.postech.fastfoodsystemcore.domain.vo.Email;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cliente")
+@Tag(name = "Clientes", description = "Rest api para operações de clientes")
 public class ClienteController {
 
   private final CadastroDeCliente cadastroDeCliente;

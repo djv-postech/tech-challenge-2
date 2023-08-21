@@ -55,7 +55,7 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
 
     @Override
     public Produto atualizarProduto(Produto produto) {
-        ProdutoEntity produtoEntity = produtoRepositoryMongo.insert(ProdutoEntity.from(produto));
+        ProdutoEntity produtoEntity = produtoRepositoryMongo.save(ProdutoEntity.from(produto));
         return produtoConverter.convertFrom(produtoEntity);
     }
 

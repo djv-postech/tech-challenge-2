@@ -51,7 +51,7 @@ public class ProdutoEntity {
   public ProdutoEntity() {}
 
   public static ProdutoEntity from(Produto produto) {
-    return new ProdutoEntity(produto.getNome(), produto.getDescricao(),produto.getPreco(), produto.getQuantidade(), produto.getCategoria());
+    return new ProdutoEntity(produto.getId(), produto.getNome(), produto.getDescricao(),produto.getPreco(), produto.getQuantidade(), produto.getCategoria());
   }
 
   public String getId() {

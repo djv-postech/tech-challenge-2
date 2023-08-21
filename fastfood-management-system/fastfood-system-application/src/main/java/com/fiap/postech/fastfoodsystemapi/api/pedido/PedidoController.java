@@ -40,7 +40,7 @@ public class PedidoController {
     return ResponseEntity.ok().body(dadosPedido);
   }
 
-  @Operation(summary = "Listagem de pedido por numeroPedido")
+  @Operation(summary = "Listar pedido por numeroPedido")
   @GetMapping("/{numeroPedido}")
   public ResponseEntity<DadosPedido> listarPedido(@PathVariable String numeroPedido) {
     Pedido pedido = listagemDePedido.listarPedidoPorNumeroPedido(numeroPedido);
@@ -49,7 +49,7 @@ public class PedidoController {
         : ResponseEntity.notFound().build();
   }
 
-  @Operation(summary = "Listagem de pedidos por status")
+  @Operation(summary = "Listar pedidos por status")
   @GetMapping("/status/{status}")
   public ResponseEntity<List<DadosPedido>> listarPedidosPorStatus(
       @PathVariable("status") final StatusPedido statusPedido) {
@@ -57,14 +57,14 @@ public class PedidoController {
     return ResponseEntity.ok(pedidos.stream().map(DadosPedido::new).collect(Collectors.toList()));
   }
 
-  @Operation(summary = "Listagem ordernados por recebimento e status")
+  @Operation(summary = "Listar pedidos ordernados por recebimento e status")
   @GetMapping("/todos")
   public ResponseEntity<List<DadosPedido>> listarPedidos() {
     List<Pedido> pedidos = listagemDePedido.listarPedidosOrdenadosPorRecebimentoEStatus();
     return ResponseEntity.ok(pedidos.stream().map(DadosPedido::new).collect(Collectors.toList()));
   }
 
-  @Operation(summary = "Atualização do status do pedido")
+  @Operation(summary = "Atualizar status do pedido")
   @PutMapping("/{numeroPedido}/{status}")
   public ResponseEntity<DadosPedido> atualizarStatusPedido(
       @PathVariable String numeroPedido, @PathVariable("status") final StatusPedido statusPedido) {
@@ -72,7 +72,7 @@ public class PedidoController {
     return ResponseEntity.ok(new DadosPedido(pedido));
   }
 
-  @Operation(summary = "Verificão do status do pagamento do pedido")
+  @Operation(summary = "Verificar status do pagamento do pedido")
   @PutMapping("/{numeroPedido}/statusPagamento")
   public ResponseEntity<StatusPagamentoPedido> verificarStatusPagamentoPedido(@PathVariable String numeroPedido) {
 //    StatusPagamento statusPagamento = informacoesPagamentoPedido.verificaStatusPagamentoPedido(numeroPedido);

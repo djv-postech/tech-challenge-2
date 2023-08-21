@@ -11,6 +11,7 @@ public class AtualizacaoDeCliente {
         this.clienteRepository = clienteRepository;
     }
 
+    //FIXME: Utilizar padrao execute?
     public Cliente atualizarCliente(String cpf, Cliente cliente) {
         Cliente clienteBanco = clienteRepository.identificaClientePorCpf(cpf);
 

@@ -1,8 +1,6 @@
 package com.fiap.postech.fastfoodsystemapi.config.beans;
 
-import com.fiap.postech.fastfoodsystemcore.domain.entities.pagamento.PagamentoRepository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.PedidoRepository;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.pagamento.ConfirmacaoDePagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.AtualizacaoDePedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.CadastroDePedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedido;

@@ -5,7 +5,6 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.ProdutoReposi
 public class ExclusaoDeProduto {
     private final ProdutoRepository produtoRepository;
 
-
     public ExclusaoDeProduto(ProdutoRepository produtoRepository){
         this.produtoRepository = produtoRepository;
     }
