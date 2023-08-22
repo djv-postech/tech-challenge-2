@@ -7,7 +7,9 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.AtualizacaoDePedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.CadastroDePedido;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedido;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedidoOrdenadosPorRecebimentoEStatus;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedidoPorNumeroDePedido;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedidoPorStatus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -26,7 +28,10 @@ import java.util.stream.Collectors;
 public class PedidoController {
 
   private final CadastroDePedido cadastroDePedido;
-  private final ListagemDePedido listagemDePedido;
+  private final ListagemDePedidoPorNumeroDePedido listarPedidoPorNumeroPedido;
+  private final ListagemDePedidoPorStatus listarPedidoPorStatus;
+
+  private final ListagemDePedidoOrdenadosPorRecebimentoEStatus listagemDePedidoOrdenadosPorRecebimentoEStatus;
   private final AtualizacaoDePedido atualizacaoDePedido;
   //private final InformacoesDePagamentoDoPedido informacoesPagamentoPedido;
 
@@ -43,7 +48,7 @@ public class PedidoController {
   @Operation(summary = "Listar pedido por numeroPedido")
   @GetMapping("/{numeroPedido}")
   public ResponseEntity<DadosPedido> listarPedido(@PathVariable String numeroPedido) {
-    Pedido pedido = listagemDePedido.listarPedidoPorNumeroPedido(numeroPedido);
+    Pedido pedido = listarPedidoPorNumeroPedido.listarPedidoPorNumeroPedido(numeroPedido);
     return Objects.nonNull(pedido)
         ? ResponseEntity.ok(new DadosPedido(pedido))
         : ResponseEntity.notFound().build();
@@ -53,14 +58,14 @@ public class PedidoController {
   @GetMapping("/status/{status}")
   public ResponseEntity<List<DadosPedido>> listarPedidosPorStatus(
       @PathVariable("status") final StatusPedido statusPedido) {
-    List<Pedido> pedidos = listagemDePedido.listarPedidoPorStatus(statusPedido);
+    List<Pedido> pedidos = listarPedidoPorStatus.listarPedidoPorStatus(statusPedido);
     return ResponseEntity.ok(pedidos.stream().map(DadosPedido::new).collect(Collectors.toList()));
   }
 
   @Operation(summary = "Listar pedidos ordernados por recebimento e status")
   @GetMapping("/todos")
   public ResponseEntity<List<DadosPedido>> listarPedidos() {
-    List<Pedido> pedidos = listagemDePedido.listarPedidosOrdenadosPorRecebimentoEStatus();
+    List<Pedido> pedidos = listagemDePedidoOrdenadosPorRecebimentoEStatus.listarPedidosOrdenadosPorRecebimentoEStatus();
     return ResponseEntity.ok(pedidos.stream().map(DadosPedido::new).collect(Collectors.toList()));
   }
 

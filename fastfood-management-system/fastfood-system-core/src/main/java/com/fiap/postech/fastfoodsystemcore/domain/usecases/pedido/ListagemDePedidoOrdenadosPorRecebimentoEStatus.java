@@ -3,17 +3,16 @@ package com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.PedidoRepository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListagemDePedido {
+public class ListagemDePedidoOrdenadosPorRecebimentoEStatus {
 
-    //TODO - dividir cada busca em um usecase?!?!?!?! - em analise
+    //FIXME: Pesquisar sobre padrao dos métodos para nao ficar redundante, já que cada use case tem apenas uma única responsabilidade
     private final PedidoRepository pedidoRepository;
 
-    public ListagemDePedido(PedidoRepository pedidoRepository){
+    public ListagemDePedidoOrdenadosPorRecebimentoEStatus(PedidoRepository pedidoRepository){
         this.pedidoRepository = pedidoRepository;
     }
 
