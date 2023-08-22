@@ -42,6 +42,8 @@ public class PedidoController {
     Pedido pedidoCadastrado = cadastroDePedido.cadastrarPedido(dadosCadastroPedido.convertToPedido());
 
     DadosPedido dadosPedido = new DadosPedido(pedidoCadastrado);
+
+    //FIXME: Devemos retornar apenas um objeto contendo os dados importantes do pedido cadastrado?
     return ResponseEntity.ok().body(dadosPedido);
   }
 
@@ -78,8 +80,9 @@ public class PedidoController {
   }
 
   @Operation(summary = "Verificar status do pagamento do pedido")
-  @PutMapping("/{numeroPedido}/statusPagamento")
+  @GetMapping("/{numeroPedido}/statusPagamento")
   public ResponseEntity<StatusPagamentoPedido> verificarStatusPagamentoPedido(@PathVariable String numeroPedido) {
+    //TODO
 //    StatusPagamento statusPagamento = informacoesPagamentoPedido.verificaStatusPagamentoPedido(numeroPedido);
 //    return ResponseEntity.ok(new StatusPagamentoPedido(numeroPedido, statusPagamento));
     return null;
