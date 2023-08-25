@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Pedidos", description = "Rest api para operações de pedidos")
 public class PedidoController {
 
+  //TODO tirar anotaçao e adicionar construtor
   private final CadastroDePedido cadastroDePedido;
   private final ListagemDePedidoPorNumeroDePedido listarPedidoPorNumeroPedido;
   private final ListagemDePedidoPorStatus listarPedidoPorStatus;
@@ -38,6 +39,10 @@ public class PedidoController {
   @PostMapping
   public ResponseEntity<DadosPedido> cadastrarPedido(
       @Valid @RequestBody DadosCadastroPedido dadosCadastroPedido) {
+
+    //TODO: Criar endpoint de pagamento: chama o endpoint de criaçao de pedido,
+    // com o id do pedido, cria o pagamento.. endpoint para
+    // fazer pagamento/atualizar status do pedido (status pagamento)
     Pedido pedidoCadastrado =
         cadastroDePedido.cadastrarPedido(dadosCadastroPedido.convertToPedido());
 

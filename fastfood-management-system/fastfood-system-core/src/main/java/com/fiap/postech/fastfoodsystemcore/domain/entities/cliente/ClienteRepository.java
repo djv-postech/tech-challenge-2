@@ -14,3 +14,5 @@ public interface ClienteRepository {
 
   void excluirClientePorCpf(String cpf);
 }
+
+//FIXME essa classe deve ficar aqui?
