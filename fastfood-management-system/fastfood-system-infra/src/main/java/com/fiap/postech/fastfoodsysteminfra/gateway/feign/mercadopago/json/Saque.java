@@ -1,11 +1,12 @@
 package com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-//FIXME: Verificar o local correto para estes arquivos
 @AllArgsConstructor
 @Data
-public class CashOut {
-  private Integer amount;
+public class Saque {
+  @JsonProperty(value = "amount")
+  private Integer valor;
 }

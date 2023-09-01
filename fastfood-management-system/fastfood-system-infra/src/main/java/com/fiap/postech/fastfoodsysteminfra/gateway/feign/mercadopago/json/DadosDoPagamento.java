@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class PaymentData {
+public class DadosDoPagamento {
   private String id;
 }

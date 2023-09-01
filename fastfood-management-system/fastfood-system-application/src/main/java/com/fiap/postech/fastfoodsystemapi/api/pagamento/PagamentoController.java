@@ -44,7 +44,7 @@ public class PagamentoController {
   public ResponseEntity<String> gerarPagamento(@PathVariable String numeroPedido) {
     final Pedido pedido =
         listagemDePedidoPorNumeroDePedido.listarPedidoPorNumeroPedido(numeroPedido);
-    final String qrCode = criacaoDePagamento.criarQrCodeParaPagamento(pedido);
+    final String qrCode = criacaoDePagamento.gerarQrCodeParaPagamento(pedido);
     return ResponseEntity.ok(qrCode);
   }
 
@@ -63,14 +63,14 @@ public class PagamentoController {
   public ResponseEntity<StatusPagamentoPedido> confirmarPagamento(
       @RequestBody ConfirmacaoDePagamentoRequest confirmacaoDePagamentoRequest) {
     // FIXME: Ok esses objetos? Deveriam ser records?
-    final String numeroPedido = confirmacaoDePagamentoRequest.getData().getId();
+    final String numeroPedido = confirmacaoDePagamentoRequest.getDadosDoPagamento().getId();
 
     final Pedido pedido =
         listagemDePedidoPorNumeroDePedido.listarPedidoPorNumeroPedido(numeroPedido);
 
     final Pagamento pagamento =
         confirmacaoDePagamento.confirmarPagamento(
-            pedido.getPagamento(), confirmacaoDePagamentoRequest.getDateCreated());
+            pedido.getPagamento(), confirmacaoDePagamentoRequest.getDataHoraDeConfirmacao());
 
     atualizacaoDePedido.atualizarPedido(numeroPedido, pagamento);
 

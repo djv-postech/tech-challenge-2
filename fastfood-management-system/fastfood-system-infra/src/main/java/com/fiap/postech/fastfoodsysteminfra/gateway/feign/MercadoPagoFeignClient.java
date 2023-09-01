@@ -22,5 +22,5 @@ public interface MercadoPagoFeignClient {
       @PathVariable("user_id") String userId,
       @PathVariable("external_pos_id") String externalPosId,
       @RequestBody QRCodeRequest request);
-
 }
+

@@ -2,7 +2,6 @@ package com.fiap.postech.fastfoodsystemapi.api.pedido;
 
 import com.fiap.postech.fastfoodsystemapi.api.pedido.records.DadosCadastroPedido;
 import com.fiap.postech.fastfoodsystemapi.api.pedido.records.DadosPedido;
-import com.fiap.postech.fastfoodsystemapi.api.pedido.records.StatusPagamentoPedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.AtualizacaoDePedido;
@@ -16,7 +15,6 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -11,7 +11,7 @@ public class CriacaoDePagamento {
     this.mercadoPagoGateway = mercadoPagoGateway;
   }
 
-  public String criarQrCodeParaPagamento(Pedido pedido) {
+  public String gerarQrCodeParaPagamento(Pedido pedido) {
     return mercadoPagoGateway.gerarQRCode(pedido);
   }
 }

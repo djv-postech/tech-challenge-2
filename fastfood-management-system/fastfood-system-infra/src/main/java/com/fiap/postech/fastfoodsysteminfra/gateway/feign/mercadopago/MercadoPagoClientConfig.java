@@ -1,6 +1,5 @@
 package com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago;
 
-import com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.MercadoPagoClientProperties;
 
 import feign.Request.Options;
 import lombok.RequiredArgsConstructor;

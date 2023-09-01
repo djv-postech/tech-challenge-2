@@ -26,8 +26,6 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
-
-<!--fixme-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>

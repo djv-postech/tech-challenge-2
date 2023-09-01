@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QRCodeResponse {
   @JsonProperty("in_store_order_id")
-  private String inStoreOrderId;
+  private String numeroInternoPagamento;
 
   @JsonProperty("qr_data")
   private String qrCode;

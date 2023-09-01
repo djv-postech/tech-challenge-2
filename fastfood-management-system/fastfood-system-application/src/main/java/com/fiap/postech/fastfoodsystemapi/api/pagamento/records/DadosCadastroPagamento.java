@@ -10,8 +10,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record DadosCadastroPagamento(
-
-    @NotNull
     @NotNull TipoPagamento tipoPagamento,
     @NotNull BigDecimal totalPagamento,
     @NotNull @JsonSerialize(using = LocalDateTimeSerializer.class) LocalDateTime dataPagamento,

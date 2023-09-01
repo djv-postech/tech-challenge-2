@@ -7,16 +7,20 @@ import lombok.Data;
 @Data
 public class QRCodeRequest {
   @JsonProperty(value = "external_reference")
-  private String externalReference;
-  private String title;
+  private String numeroPedido;
+
+  @JsonProperty(value = "title")
+  private String titulo;
 
   @JsonProperty(value = "total_amount")
-  private Integer totalAmount;
+  private Integer valorTotal;
 
-  private String description;
+  @JsonProperty(value = "description")
+  private String descricao;
 
-  private List<Item> items;
+  @JsonProperty(value = "items")
+  private List<Item> itens;
 
   @JsonProperty(value = "cash_out")
-  private CashOut cashOut;
+  private Saque saque;
 }

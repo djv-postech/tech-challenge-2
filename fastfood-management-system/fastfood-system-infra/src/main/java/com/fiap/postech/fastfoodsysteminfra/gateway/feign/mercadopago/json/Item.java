@@ -7,16 +7,19 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Item {
-  private String title;
+
+  @JsonProperty(value = "title")
+  private String titulo;
 
   @JsonProperty(value = "unit_price")
-  private Integer unitPrice;
+  private Integer precoUnitario;
 
-  private Integer quantity;
+  @JsonProperty(value = "quantity")
+  private Integer quantidade;
 
   @JsonProperty(value = "unit_measure")
-  private String unitMeasure;
+  private String unidadeDeMedida;
 
   @JsonProperty(value = "total_amount")
-  private Integer totalAmount;
+  private Integer valorTotal;
 }
