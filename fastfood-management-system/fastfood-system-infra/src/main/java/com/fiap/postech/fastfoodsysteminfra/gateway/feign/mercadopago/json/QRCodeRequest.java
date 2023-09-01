@@ -1,11 +1,11 @@
-package com.fiap.postech.fastfoodsystemcore.domain.mercadoPago;
+package com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Data;
 
 @Data
-public class GerarQRCodeRequest {
+public class QRCodeRequest {
   @JsonProperty(value = "external_reference")
   private String externalReference;
   private String title;

@@ -6,9 +6,5 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @ComponentScan(basePackages = "com.fiap.postech.fastfoodsysteminfra.persistence")
-@ComponentScan("com.fiap.postech.*")
 @EnableMongoRepositories
-public class JpaConfiguration {
-
-
-}
+public class JpaConfiguration {}

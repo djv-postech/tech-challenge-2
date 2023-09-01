@@ -1,4 +1,4 @@
-package com.fiap.postech.fastfoodsysteminfra.gateway.feign;
+package com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago;
 
 import com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.MercadoPagoClientProperties;
 

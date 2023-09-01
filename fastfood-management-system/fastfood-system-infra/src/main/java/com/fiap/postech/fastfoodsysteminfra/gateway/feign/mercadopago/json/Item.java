@@ -1,4 +1,4 @@
-package com.fiap.postech.fastfoodsystemcore.domain.mercadoPago;
+package com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
