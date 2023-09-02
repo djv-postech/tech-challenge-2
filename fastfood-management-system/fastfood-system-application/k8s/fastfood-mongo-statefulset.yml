@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: fastfood-mongo-deployment
+  name: fastfood-mongo-statefulset
   labels:
     app: fastfood-mongo
 spec:
@@ -12,11 +12,19 @@ spec:
       labels:
         app: fastfood-mongo
     spec:
+      volumes:
+        - name: dados
+          persistentVolumeClaim:
+            claimName: fastfood-mongo-pvc
       containers:
         - name: fastfood-mongo-container
           image: mongo:4.0.3
+          args: ["--dbpath", "data/db"]
           ports:
             - containerPort: 27017
+          volumeMounts:
+            - name: dados
+              mountPath: /data/db
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
@@ -44,3 +52,4 @@ spec:
   selector:
     matchLabels:
       app: fastfood-mongo
+  serviceName: fastfood-mongo-service

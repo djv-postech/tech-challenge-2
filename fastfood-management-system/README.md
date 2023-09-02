@@ -128,7 +128,8 @@ O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong>
    * kubectl apply -f fastfood-secrets.yml
    * kubectl apply -f fastfood-mongo-svc.yml
    * kubectl apply -f fastfood-svc.yml
-   * kubectl apply -f fastfood-mongo-deployment.yml
+   * kubectl apply -f fastfood-mongo-pvc
+   * kubectl apply -f fastfood-mongo-statefulset.yml
    * kubectl apply -f fastfood-deployment.yml
    * kubectl apply -f fastfood-hpa.yml
 
