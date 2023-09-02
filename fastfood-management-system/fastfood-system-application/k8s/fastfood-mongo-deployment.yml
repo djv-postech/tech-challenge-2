@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastfood-mongo-deployment
+  labels:
+    app: fastfood-mongo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: fastfood-mongo
+      labels:
+        app: fastfood-mongo
+    spec:
+      containers:
+        - name: fastfood-mongo-container
+          image: mongo:4.0.3
+          ports:
+            - containerPort: 27017
+          envFrom:
+            - configMapRef:
+                name: fastfood-mongo-configmap
+  selector:
+    matchLabels:
+      app: fastfood-mongo
