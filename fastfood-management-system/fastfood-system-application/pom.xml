@@ -132,7 +132,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<repository>jacksoncarloslr/fastfood</repository>
+					<repository>techchallenge/fastfood</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
 						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>

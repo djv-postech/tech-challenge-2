@@ -1,4 +1,4 @@
-## [Tech Challenge](#Tech Challenge)
+## [Tech Challenge - FastFood](#Tech Challenge)
 
 Sistema para gerenciamento de pedidos, contendo as APIs:
 
@@ -12,8 +12,14 @@ Sistema para gerenciamento de pedidos, contendo as APIs:
 
 ***
 ### [Contexto](#Contexto)
-Fase 1 do Tech Challenge do curso de Arquitetura de Software
-da Pós Tech FIAP 2023 usando os conceitos de DDD e Arquitetura Hexagonal.
+Fase 1 e 2 do Tech Challenge do curso de Arquitetura de Software
+da Pós Tech FIAP 2023 usando os conceitos de DDD, Clean Architecture, Solid e K8s. Diferentemente da fase 1, na fase 2 optamos por 
+dividir o sistema em módulos para manter, além de um isolamento lógico, também um isolamento físico entre as camadas. Optamos por dividir da seguinte maneira:
+
+* fastfood-management-system: módulo pai.
+* fastfood-system-application: módulo que contem API, também responsável pela inicialização da aplicação.
+* fastfood-system-core: módulo que contém a camada de domínio isolada do resto da aplicação.
+* fastfood-system-infra: módulo com as configurações de persistência e infraestrutura geral do projeto.
 
 
 ### [Domínio](#Dominio)
@@ -106,14 +112,29 @@ Exemplo Payload:
 * Swagger
 * Spring Data MongoDB
 * Docker
+* Kubernetes
 
 
 ### [Instruções para iniciar o projeto](#Instruções para iniciar o projeto)
 ***
-1.  mvn clean && mvn install
-2.  docker build -t tech-challenge:latest .
-3.  docker-compose up
-4.  Aplicação disponível em: http://localhost:8080/swagger-ui/index.html#/ .
+<p>1.  mvn clean install
+<p>O comando acima fará o build do projeto e também irá gerar a imagem com nome: <strong>techchallenge/fastfood:0.0.1-SNAPSHOT</strong>
+
+<p>2. Para subir a aplicação será necessário executar os comandos para geração dos artefatos do k8s:
+O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong> Os arquivos se encontram na pasta k8s dentro do modulo: <strong>fastfood-system-application</strong>
+<p> Lista ordenada dos artefatos a serem criados:
+   
+   * kubectl apply -f fastfood-mongo-secrets.yml
+   * kubectl apply -f fastfood-secrets.yml
+   * kubectl apply -f fastfood-mongo-svc.yml
+   * kubectl apply -f fastfood-svc.yml
+   * kubectl apply -f fastfood-mongo-deployment.yml
+   * kubectl apply -f fastfood-deployment.yml
+   * kubectl apply -f fastfood-hpa.yml
+
+<p>Obs: optamos por utilizar secrets do tipo Opaque como demonstrado nas aulas</p>
+
+<p>3.  Aplicação disponível em: http://localhost:8080/swagger-ui/index.html#/ .
 
 
 
@@ -121,4 +142,3 @@ Exemplo Payload:
 ***
 * Jackson Carlos Leite Ramalho (jacksoncarloslr@gmail.com)
 * Valqueline Nicácio da Silva (valqueline.nicacio@gmail.com)
-* Daniel Melo (danielmelowork@gmail.com)

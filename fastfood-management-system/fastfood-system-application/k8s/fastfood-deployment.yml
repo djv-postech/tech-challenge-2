@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fastfood-tech-challenge-container
-          image: jacksoncarloslr/fastfood:0.0.1-SNAPSHOT
+          image: techchallenge/fastfood:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8080
           env:
