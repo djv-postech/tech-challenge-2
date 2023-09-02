@@ -17,9 +17,30 @@ spec:
           image: mongo:4.0.3
           ports:
             - containerPort: 27017
-          envFrom:
-            - configMapRef:
-                name: fastfood-mongo-configmap
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-mongo-secret-opaque
+                  key: MONGO_INITDB_ROOT_USERNAME
+
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-mongo-secret-opaque
+                  key: MONGO_INITDB_ROOT_PASSWORD
+
+            - name: MONGO_INITDB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-mongo-secret-opaque
+                  key: MONGO_INITDB_DATABASE
+
+            - name: ME_CONFIG_MONGODB_ENABLE_ADMIN
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-mongo-secret-opaque
+                  key: ME_CONFIG_MONGODB_ENABLE_ADMIN
   selector:
     matchLabels:
       app: fastfood-mongo

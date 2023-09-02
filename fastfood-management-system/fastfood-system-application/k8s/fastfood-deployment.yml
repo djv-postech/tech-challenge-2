@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fastfood
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       name: fastfood
@@ -17,9 +17,30 @@ spec:
           image: jacksoncarloslr/fastfood:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8080
-          envFrom:
-            - configMapRef:
-                name: fastfood-configmap
+          env:
+            - name: MONGO_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-secret-opaque
+                  key: MONGO_HOST
+
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-secret-opaque
+                  key: MONGO_USERNAME
+
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-secret-opaque
+                  key: MONGO_PASSWORD
+
+            - name: MONGO_DB
+              valueFrom:
+                secretKeyRef:
+                  name: fastfood-secret-opaque
+                  key: MONGO_DB
 #          livenessProbe:
 #            httpGet:
 #              path: /actuator/health/
