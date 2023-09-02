@@ -41,20 +41,20 @@ spec:
                 secretKeyRef:
                   name: fastfood-secret-opaque
                   key: MONGO_DB
-#          livenessProbe:
-#            httpGet:
-#              path: /actuator/health/
-#              port: 8080
-#            periodSeconds: 10
-#            failureThreshold: 3
-#            initialDelaySeconds: 30
-#          readinessProbe:
-#             httpGet:
-#               path: /actuator/health
-#               port: 8080
-#             periodSeconds: 10
-#             failureThreshold: 5
-#             initialDelaySeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          readinessProbe:
+             httpGet:
+               path: /actuator/health
+               port: 8080
+             periodSeconds: 10
+             failureThreshold: 5
+             initialDelaySeconds: 10
           resources:
             requests:
               cpu: 10m
