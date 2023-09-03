@@ -7,9 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class PedidoConverter {
 
-    public Pedido convertFrom(PedidoEntity pedidoEntity){
-        return new Pedido(pedidoEntity.getNumeroPedido(), pedidoEntity.getCliente(), pedidoEntity.getProdutos(), pedidoEntity.getPagamento(), pedidoEntity.getStatusPedido(),
-                pedidoEntity.getDataCriacaoPedido());
-    }
-
+  public Pedido convertFrom(PedidoEntity pedidoEntity) {
+    return new Pedido(
+        pedidoEntity.getNumeroPedido(),
+        pedidoEntity.getCliente(),
+        pedidoEntity.getProdutos(),
+        pedidoEntity.getValorTotal(),
+        pedidoEntity.getPagamento(),
+        pedidoEntity.getStatusPedido(),
+        pedidoEntity.getDataCriacaoPedido());
+  }
 }

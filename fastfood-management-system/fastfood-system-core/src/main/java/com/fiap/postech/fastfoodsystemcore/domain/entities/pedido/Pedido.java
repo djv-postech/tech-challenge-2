@@ -4,74 +4,88 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pagamento.Pagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Pedido {
 
-    private String numeroPedido;
-    private final List<Produto> produtos;
-    private final Cliente cliente;
-    private Pagamento pagamento;
-    private StatusPedido statusPedido;
-    private final LocalDateTime dataCriacaoPedido;
+  private String numeroPedido;
 
-    public Pedido(
-            String numeroPedido,
-            Cliente cliente,
-            List<Produto> produtos,
-            Pagamento pagamento,
-            StatusPedido statusPedido,
-            LocalDateTime dataCriacaoPedido) {
-        this.numeroPedido = numeroPedido;
-        this.produtos = produtos;
-        this.cliente = cliente;
-        this.pagamento = pagamento;
-        this.statusPedido = statusPedido;
-        this.dataCriacaoPedido = dataCriacaoPedido;
-    }
+  private final Cliente cliente;
+  private final List<Produto> produtos;
 
-    public Pedido(
-            Cliente cliente,
-            List<Produto> produtos,
-            Pagamento pagamento,
-            StatusPedido statusPedido,
-            LocalDateTime dataCriacaoPedido) {
-        this.produtos = produtos;
-        this.cliente = cliente;
-        this.pagamento = pagamento;
-        this.statusPedido = statusPedido;
-        this.dataCriacaoPedido = dataCriacaoPedido;
-    }
+  private final BigDecimal valorTotal;
 
-    public String getNumeroPedido() {
-        return numeroPedido;
-    }
+  private Pagamento pagamento;
+  private StatusPedido statusPedido;
+  private final LocalDateTime dataCriacaoPedido;
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-    public Cliente getCliente() {
-        return cliente;
-    }
+  public Pedido(
+      String numeroPedido,
+      Cliente cliente,
+      List<Produto> produtos,
+      BigDecimal valorTotal,
+      Pagamento pagamento,
+      StatusPedido statusPedido,
+      LocalDateTime dataCriacaoPedido) {
+    this.numeroPedido = numeroPedido;
+    this.cliente = cliente;
+    this.produtos = produtos;
+    this.valorTotal = valorTotal;
+    this.pagamento = pagamento;
+    this.statusPedido = statusPedido;
+    this.dataCriacaoPedido = dataCriacaoPedido;
+  }
 
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
+  public Pedido(
+      Cliente cliente,
+      List<Produto> produtos,
+      BigDecimal valorTotal,
+      Pagamento pagamento,
+      StatusPedido statusPedido,
+      LocalDateTime dataCriacaoPedido) {
+    this.cliente = cliente;
+    this.produtos = produtos;
+    this.valorTotal = valorTotal;
+    this.pagamento = pagamento;
+    this.statusPedido = statusPedido;
+    this.dataCriacaoPedido = dataCriacaoPedido;
+  }
 
-    public StatusPedido getStatusPedido() {
-        return statusPedido;
-    }
+  public String getNumeroPedido() {
+    return numeroPedido;
+  }
 
-    public LocalDateTime getDataCriacaoPedido() {
-        return dataCriacaoPedido;
-    }
+  public List<Produto> getProdutos() {
+    return produtos;
+  }
 
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
-    }
+  public Cliente getCliente() {
+    return cliente;
+  }
 
-    public void setStatus(StatusPedido statusPedido) {
-        this.statusPedido = statusPedido;
-    }
+  public BigDecimal getValorTotal() {
+    return valorTotal;
+  }
+
+  public Pagamento getPagamento() {
+    return pagamento;
+  }
+
+  public StatusPedido getStatusPedido() {
+    return statusPedido;
+  }
+
+  public LocalDateTime getDataCriacaoPedido() {
+    return dataCriacaoPedido;
+  }
+
+  public void setPagamento(Pagamento pagamento) {
+    this.pagamento = pagamento;
+  }
+
+  public void setStatus(StatusPedido statusPedido) {
+    this.statusPedido = statusPedido;
+  }
 }

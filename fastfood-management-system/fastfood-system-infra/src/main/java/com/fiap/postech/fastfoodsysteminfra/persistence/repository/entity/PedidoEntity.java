@@ -5,6 +5,7 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.pagamento.Pagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
+import java.math.BigDecimal;
 import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,63 +17,69 @@ import java.util.List;
 @Document(collection = "pedidos")
 public class PedidoEntity {
 
-    @Id
-    private String numeroPedido;
-    private List<Produto> produtos;
-    private Cliente cliente;
-    private Pagamento pagamento;
-    private StatusPedido statusPedido;
-    private LocalDateTime dataCriacaoPedido;
+  @Id private String numeroPedido;
 
-    public PedidoEntity(Pedido pedido) {
-        this.numeroPedido = pedido.getNumeroPedido();
-        this.produtos = pedido.getProdutos();
-        this.cliente = pedido.getCliente();
-        this.pagamento = pedido.getPagamento();
-        this.statusPedido = pedido.getStatusPedido();
-        this.dataCriacaoPedido = pedido.getDataCriacaoPedido();
-    }
+  private Cliente cliente;
+  private List<Produto> produtos;
+  private BigDecimal valorTotal;
+  private Pagamento pagamento;
+  private StatusPedido statusPedido;
+  private LocalDateTime dataCriacaoPedido;
 
-    public PedidoEntity(
-            String numeroPedido,
-            List<Produto> produtos,
-            Cliente cliente,
-            Pagamento pagamento,
-            StatusPedido statusPedido,
-            LocalDateTime dataCriacaoPedido) {
-        this.numeroPedido = numeroPedido;
-        this.produtos = produtos;
-        this.cliente = cliente;
-        this.pagamento = pagamento;
-        this.statusPedido = statusPedido;
-        this.dataCriacaoPedido = dataCriacaoPedido;
-    }
+  public PedidoEntity(Pedido pedido) {
+    this.numeroPedido = pedido.getNumeroPedido();
+    this.cliente = pedido.getCliente();
+    this.produtos = pedido.getProdutos();
+    this.valorTotal = pedido.getValorTotal();
+    this.pagamento = pedido.getPagamento();
+    this.statusPedido = pedido.getStatusPedido();
+    this.dataCriacaoPedido = pedido.getDataCriacaoPedido();
+  }
 
-    public PedidoEntity(){
+  public PedidoEntity(
+      String numeroPedido,
+      Cliente cliente,
+      List<Produto> produtos,
+      BigDecimal valorTotal,
+      Pagamento pagamento,
+      StatusPedido statusPedido,
+      LocalDateTime dataCriacaoPedido) {
+    this.numeroPedido = numeroPedido;
+    this.cliente = cliente;
+    this.produtos = produtos;
+    this.valorTotal = valorTotal;
+    this.pagamento = pagamento;
+    this.statusPedido = statusPedido;
+    this.dataCriacaoPedido = dataCriacaoPedido;
+  }
 
-    }
+  public PedidoEntity() {}
 
-    public String getNumeroPedido() {
-        return numeroPedido;
-    }
+  public String getNumeroPedido() {
+    return numeroPedido;
+  }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
+  public List<Produto> getProdutos() {
+    return produtos;
+  }
 
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
+  public BigDecimal getValorTotal() {
+    return valorTotal;
+  }
 
-    public StatusPedido getStatusPedido() {
-        return statusPedido;
-    }
+  public Pagamento getPagamento() {
+    return pagamento;
+  }
 
-    public LocalDateTime getDataCriacaoPedido() {
-        return dataCriacaoPedido;
-    }
+  public StatusPedido getStatusPedido() {
+    return statusPedido;
+  }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
+  public LocalDateTime getDataCriacaoPedido() {
+    return dataCriacaoPedido;
+  }
+
+  public Cliente getCliente() {
+    return cliente;
+  }
 }
