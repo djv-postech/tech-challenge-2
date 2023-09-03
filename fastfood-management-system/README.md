@@ -5,7 +5,8 @@ Sistema para gerenciamento de pedidos
 ### Índice
 
 * [Contexto](#contexto)
-* [Domínio](#dominio)
+* [Módulo de Infra e Aplicação](#Módulo_De_Infra_E_Aplicacao)
+* [Módulo Core](#dominio)
 * [Tecnologias](#tecnologias)
 * [Instruções para iniciar o projeto](#instruções-para-iniciar-o-projeto)
 * [Grupo 7](#grupo-7)
@@ -17,14 +18,37 @@ da Pós Tech FIAP 2023 usando os conceitos de DDD, Clean Architecture, Solid e K
 dividir o sistema em módulos para manter, além de um isolamento lógico, também um isolamento físico entre as camadas. Optamos por dividir da seguinte maneira:
 
 * fastfood-management-system: módulo pai.
-* fastfood-system-application: módulo que contem API, também responsável pela inicialização da aplicação.
+* fastfood-system-application: módulo que contém API, também responsável pela inicialização da aplicação.
 * fastfood-system-core: módulo que contém a camada de domínio isolada do resto da aplicação.
 * fastfood-system-infra: módulo com as configurações de persistência e infraestrutura geral do projeto.
 
+### [Módulo de Infra e Aplicação](#Módulo_De_Infra_E_Aplicacao)
 
-### [Domínio](#Dominio)
-O domínio é composto pelas entidades Cliente, Pedido, Produto e Funcionário.
-Segue abaixo uma breve descrição das operações implementadas em cada classe do domínio.
+<p>Utilizamos o módulo de infra para criar as entidades e operações (implementações) de persistência de dados, criar classes
+de conversão para interação com domínio, além de definição de exceções para tratamento de erros. Nessa camada tomamos
+liberdade de utilizar anotaçoes, principalmente as referente a pesistência de dados (com JPA) no MongoDB e do framework utilizado (Spring),
+pois entendemos que não estamos violando a camada mais interna de domínio.</p>
+
+<p>No módulo de aplicação definimos a API para acesso as operações e usecases (via interface), error handler e configurações de inicialização e 
+criação de beans do projeto. É no módulo de aplicação que se encontram os arquivos para criação dos artefatos kubernetes como os deployments,
+services... etc. Aqui também utilizamos anotações do framework para facilitar as configurações e gerenciamento geral do projeto.
+
+### [Módulo Core](#Dominio)
+
+<p>O módulo core contém as classes de domínio é composto pelas entidades: Cliente, Pedido, Produto e Funcionário.</p> 
+
+<p>Construímos as classes de domínio com suas respectivas interfaces e usecases no módulo fastfood-system-core e 
+isolamos essa camada de todo resto da aplicação. Dentre as estratégias e boas práticas para garantir o isolamento, 
+utilizamos:</p>
+
+* Acesso e manipulação das classes de domínio apenas via usecases e interfaces.
+* Separação de usecases em classes distintas para garantir o principio de responsabilidade única e garantir o baixo acoplamento.
+* Ausência de anotações de frameworks e bibliotecas, garantindo o desacoplamento tecnológico.
+* Implementação baseada em interfaces e inversão de dependência na camada de usecases.
+* Validações e divisão em pacotes garantindo uma visualização mais clara do contexto do projeto.
+
+<p>Segue abaixo uma breve descrição das operações implementadas em cada classe do domínio.</p>
+
 
 #### **Cliente**
 - Cadastro de novos clientes
