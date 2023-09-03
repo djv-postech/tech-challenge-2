@@ -2,14 +2,28 @@ server.port: 8080
 spring:
   data:
     mongodb:
-      uri: "mongodb://localhost:27017/gestaoDePedidos"
+      host: ${MONGO_HOST:localhost}
+      username: ${MONGO_USERNAME:""}
+      password: ${MONGO_PASSWORD:""}
+      database: ${MONGO_DB:gestaoDePedidos}
+      port: 27017
+      authentication-database: admin
+
 management:
-  endpoints:
+  endpoint:
     health:
       show-details: always
+      probes:
+        enabled: true
+      enabled: true
     web:
       exposure:
         include: "*"
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
 
 
 mercado:
