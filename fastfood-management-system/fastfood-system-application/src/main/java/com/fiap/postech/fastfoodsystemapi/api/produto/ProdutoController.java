@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produto")
-@RequiredArgsConstructor
 @Tag(name = "Produtos", description = "Rest api para operações de produtos")
 public class ProdutoController {
 
@@ -28,6 +27,14 @@ public class ProdutoController {
   private final ListagemDeProduto listagemDeProduto;
   private final AtualizacaoDeProduto atualizacaoDeProduto;
   private final ExclusaoDeProduto exclusaoDeProduto;
+
+  public ProdutoController(CadastroDeProduto cadastrarProduto, ListagemDeProduto listagemDeProduto,
+      AtualizacaoDeProduto atualizacaoDeProduto, ExclusaoDeProduto exclusaoDeProduto) {
+    this.cadastrarProduto = cadastrarProduto;
+    this.listagemDeProduto = listagemDeProduto;
+    this.atualizacaoDeProduto = atualizacaoDeProduto;
+    this.exclusaoDeProduto = exclusaoDeProduto;
+  }
 
   @Operation(summary = "Cadastrar produto")
   @PostMapping

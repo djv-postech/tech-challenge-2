@@ -1,4 +1,4 @@
-package com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters;
+package com.fiap.postech.fastfoodsysteminfra.persistence.repository.converter;
 
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.vo.CPF;

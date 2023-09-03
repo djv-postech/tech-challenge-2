@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record DadosPagamento(
-    String idPedido,
+    String id,
     BigDecimal totalPagamento,
     TipoPagamento tipoPagamento,
     LocalDateTime dataPagamento,
@@ -17,7 +17,7 @@ public record DadosPagamento(
 
   public DadosPagamento(Pagamento dadosPagamento) {
     this(
-        dadosPagamento.getIdPedido(),
+        dadosPagamento.getId(),
         dadosPagamento.getTotalPagamento(),
         dadosPagamento.getTipoPagamento(),
         dadosPagamento.getDataPagamento(),

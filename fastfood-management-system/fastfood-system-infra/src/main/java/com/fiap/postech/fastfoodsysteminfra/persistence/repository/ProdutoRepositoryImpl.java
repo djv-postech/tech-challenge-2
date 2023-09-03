@@ -4,7 +4,7 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Categoria;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.ProdutoRepository;
 import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
-import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.ProdutoConverter;
+import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converter.ProdutoConverter;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.entity.ProdutoEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public record DadosCadastroPedido(
     DadosCadastroCliente cliente,
-    @NotNull List<DadosCadastroProduto> cadastroProdutos,
+    @NotNull List<DadosCadastroProduto> produtos,
     @NotNull DadosCadastroPagamento pagamento,
     @NotNull StatusPedido statusPedido,
     @NotNull @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -29,7 +29,7 @@ public record DadosCadastroPedido(
         public Pedido convertToPedido() {
                 return new Pedido(
                         new Cliente(cliente.nome(),new CPF(cliente.cpf()), new Email(cliente.email())),
-                        buildProdutos(cadastroProdutos),
+                        buildProdutos(produtos),
                         new Pagamento(pagamento.dataPagamento(), pagamento.statusPagamento(), pagamento.tipoPagamento(), pagamento.totalPagamento()),
                         statusPedido, dataCriacaoPedido);
         }

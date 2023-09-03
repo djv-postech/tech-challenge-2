@@ -2,26 +2,24 @@ package com.fiap.postech.fastfoodsystemcore.domain.entities.pagamento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Pagamento {
 
   private String id;
-  private String idPedido;
   private BigDecimal totalPagamento;
   private TipoPagamento tipoPagamento;
   private LocalDateTime dataPagamento;
   private StatusPagamento statusPagamento;
 
-   public Pagamento(
+  public Pagamento(
       String id,
-      String idPedido,
       BigDecimal totalPagamento,
       TipoPagamento tipoPagamento,
-       LocalDateTime dataPagamento,
+      LocalDateTime dataPagamento,
       StatusPagamento statusPagamento) {
 
     this.id = id;
-    this.idPedido = idPedido;
     this.totalPagamento = totalPagamento;
     this.tipoPagamento = tipoPagamento;
     this.dataPagamento = dataPagamento;
@@ -30,11 +28,16 @@ public class Pagamento {
 
   public Pagamento() {}
 
-  public Pagamento(LocalDateTime dataPagamento, StatusPagamento statusPagamento, TipoPagamento tipoPagamento, BigDecimal totalPagamento) {
-     this.dataPagamento = dataPagamento;
-     this.statusPagamento = statusPagamento;
-     this.tipoPagamento = tipoPagamento;
-     this.totalPagamento = totalPagamento;
+  public Pagamento(
+      LocalDateTime dataPagamento,
+      StatusPagamento statusPagamento,
+      TipoPagamento tipoPagamento,
+      BigDecimal totalPagamento) {
+    this.id = UUID.randomUUID().toString();
+    this.dataPagamento = dataPagamento;
+    this.statusPagamento = statusPagamento;
+    this.tipoPagamento = tipoPagamento;
+    this.totalPagamento = totalPagamento;
   }
 
   public String getId() {
@@ -43,14 +46,6 @@ public class Pagamento {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public String getIdPedido() {
-    return idPedido;
-  }
-
-  public void setIdPedido(String idPedido) {
-    this.idPedido = idPedido;
   }
 
   public BigDecimal getTotalPagamento() {

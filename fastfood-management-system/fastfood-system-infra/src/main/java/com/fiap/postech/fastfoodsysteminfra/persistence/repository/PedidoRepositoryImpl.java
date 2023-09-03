@@ -4,7 +4,7 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.PedidoRepository;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
 import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
-import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.PedidoConverter;
+import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converter.PedidoConverter;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.entity.PedidoEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
