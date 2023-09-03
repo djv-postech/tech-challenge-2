@@ -3,7 +3,7 @@ package com.fiap.postech.fastfoodsysteminfra.persistence.repository;
 import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
-import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converters.ClienteConverter;
+import com.fiap.postech.fastfoodsysteminfra.persistence.repository.converter.ClienteConverter;
 import com.fiap.postech.fastfoodsysteminfra.persistence.repository.entity.ClienteEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

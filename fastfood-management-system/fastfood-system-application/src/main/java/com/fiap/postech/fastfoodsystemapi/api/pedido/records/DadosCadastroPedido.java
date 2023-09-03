@@ -21,27 +21,37 @@ import java.util.stream.Collectors;
 
 public record DadosCadastroPedido(
     DadosCadastroCliente cliente,
-    @NotNull List<DadosCadastroProduto> cadastroProdutos,
-
+    @NotNull List<DadosCadastroProduto> produtos,
     @NotNull BigDecimal valorTotal,
-
     @NotNull DadosCadastroPagamento pagamento,
     @NotNull StatusPedido statusPedido,
     @NotNull @JsonSerialize(using = LocalDateTimeSerializer.class)
         LocalDateTime dataCriacaoPedido) {
 
-        public Pedido convertToPedido() {
-                return new Pedido(
-                        new Cliente(cliente.nome(),new CPF(cliente.cpf()), new Email(cliente.email())),
-                        buildProdutos(cadastroProdutos),
-                        valorTotal,
-                        new Pagamento(pagamento.dataPagamento(), pagamento.statusPagamento(), pagamento.tipoPagamento(), pagamento.totalPagamento()),
-                        statusPedido, dataCriacaoPedido);
-        }
+  public Pedido convertToPedido() {
+    return new Pedido(
+        new Cliente(cliente.nome(), new CPF(cliente.cpf()), new Email(cliente.email())),
+        buildProdutos(produtos),
+        valorTotal,
+        new Pagamento(
+            pagamento.dataPagamento(),
+            pagamento.statusPagamento(),
+            pagamento.tipoPagamento(),
+            pagamento.totalPagamento()),
+        statusPedido,
+        dataCriacaoPedido);
+  }
 
-        private List<Produto> buildProdutos(List<DadosCadastroProduto> cadastroProdutos) {
-              return cadastroProdutos.stream()
-                         .map(cadastroProduto -> new Produto(cadastroProduto.nome(), cadastroProduto.descricao(),
-                                 cadastroProduto.categoria(),cadastroProduto.preco(), cadastroProduto.quantidade())).collect(Collectors.toList());
-        }
+  private List<Produto> buildProdutos(List<DadosCadastroProduto> cadastroProdutos) {
+    return cadastroProdutos.stream()
+        .map(
+            cadastroProduto ->
+                new Produto(
+                    cadastroProduto.nome(),
+                    cadastroProduto.descricao(),
+                    cadastroProduto.categoria(),
+                    cadastroProduto.preco(),
+                    cadastroProduto.quantidade()))
+        .collect(Collectors.toList());
+  }
 }

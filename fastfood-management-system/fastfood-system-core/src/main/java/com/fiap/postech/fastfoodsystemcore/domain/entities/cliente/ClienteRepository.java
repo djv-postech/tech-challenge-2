@@ -7,7 +7,7 @@ public interface ClienteRepository {
   Cliente cadastrarCliente(Cliente cliente);
 
   Cliente identificaClientePorCpf(String cpf);
-  
+
   Cliente atualizarCliente(Cliente cliente);
 
   List<Cliente> listarClientes();

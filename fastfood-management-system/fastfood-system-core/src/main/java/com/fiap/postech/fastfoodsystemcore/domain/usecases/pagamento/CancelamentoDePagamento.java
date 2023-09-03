@@ -6,14 +6,7 @@ import java.time.LocalDateTime;
 
 public class CancelamentoDePagamento {
 
-  public CancelamentoDePagamento(ListagemDePagamento listagemDePagamenoto) {
-    this.listagemDePagamenoto = listagemDePagamenoto;
-  }
-
-  private final ListagemDePagamento listagemDePagamenoto;
-
-  public Pagamento cancelarPagamento(String idPagamento) {
-    Pagamento pagamento = listagemDePagamenoto.retornarPagamento(idPagamento);
+  public Pagamento cancelarPagamento(Pagamento pagamento) {
     pagamento.setStatusPagamento(StatusPagamento.CANCELADO);
     pagamento.setDataPagamento(LocalDateTime.now());
     return pagamento;
