@@ -171,7 +171,8 @@ O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong>
    * kubectl apply -f fastfood-mongo-pvc.yml
    * kubectl apply -f fastfood-mongo-statefulset.yml
    * kubectl apply -f fastfood-deployment.yml
-   * kubectl apply -f fastfood-hpa.yml
+   * kubectl apply -f fastfood-hpa.yml 
+   * kubectl apply -f components.yaml
 
 <p>Obs: optamos por utilizar secrets do tipo Opaque como demonstrado nas aulas</p>
 
