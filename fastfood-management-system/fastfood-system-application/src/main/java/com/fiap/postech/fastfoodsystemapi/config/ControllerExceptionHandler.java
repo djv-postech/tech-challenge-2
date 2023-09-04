@@ -21,4 +21,10 @@ public class ControllerExceptionHandler {
         ApiError error = new ApiError(ex.getMessage(),HttpStatus.BAD_REQUEST.value());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = {IllegalArgumentException.class})
+    protected ResponseEntity<ApiError> handlerIllegalArgumentException(IllegalArgumentException ex) {
+        ApiError error = new ApiError(ex.getMessage(),HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
 }

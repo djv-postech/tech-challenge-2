@@ -39,7 +39,7 @@ public class PagamentoController {
     this.atualizacaoDePedido = atualizacaoDePedido;
   }
 
-  @Operation(summary = "Gerar qrCode para pagamento")
+  @Operation(summary = "Gerar QRCode para pagamento")
   @GetMapping("/{numeroPedido}")
   public ResponseEntity<String> gerarPagamento(@PathVariable String numeroPedido) {
     final Pedido pedido =
@@ -48,7 +48,7 @@ public class PagamentoController {
     return ResponseEntity.ok(qrCode);
   }
 
-  @Operation(summary = "Verificar status do pagamento do pedido")
+  @Operation(summary = "Consultar status do pagamento do pedido")
   @GetMapping("/{numeroPedido}/statusPagamento")
   public ResponseEntity<StatusPagamentoPedido> verificarStatusPagamentoPedido(
       @PathVariable String numeroPedido) {
