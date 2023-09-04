@@ -108,12 +108,14 @@
             <id>default</id>
             <goals>
               <goal>build</goal>
+              <goal>push</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <repository>techchallenge/fastfood</repository>
-          <tag>${project.version}</tag>
+          <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+          <repository>soatpostech/fastfood</repository>
+          <tag>latest</tag>
           <buildArgs>
             <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
           </buildArgs>
