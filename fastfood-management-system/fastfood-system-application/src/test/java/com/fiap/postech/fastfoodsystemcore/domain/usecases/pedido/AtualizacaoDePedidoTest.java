@@ -32,10 +32,10 @@ class AtualizacaoDePedidoTest {
   @Test
   public void dadoIdEStatusPedido_QuandoAtualizarPedido_EntaoDeveRetornarPedidoAtualizado() {
     // Dado
-    Produto produto =
+    final Produto produto =
         new Produto(
             "1", "big mac", "pao, hamburguer e queijo", new BigDecimal("1"), 3, Categoria.LANCHE);
-    Pagamento pagamento =
+    final Pagamento pagamento =
         new Pagamento(
             "3434353463563342",
             new BigDecimal("30.00"),
@@ -43,7 +43,7 @@ class AtualizacaoDePedidoTest {
             LocalDateTime.now(),
             StatusPagamento.APROVADO);
 
-    Pedido pedido =
+    final Pedido pedido =
         new Pedido(
             "IdPedido",
             null,

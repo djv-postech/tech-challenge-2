@@ -7,11 +7,12 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.AtualizacaoDeProduto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.CadastroDeProduto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ExclusaoDeProduto;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProduto;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutoPorCategoria;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutoPorId;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutos;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -24,14 +25,18 @@ import java.util.stream.Collectors;
 public class ProdutoController {
 
   private final CadastroDeProduto cadastrarProduto;
-  private final ListagemDeProduto listagemDeProduto;
+  private final ListagemDeProdutos listagemDeProdutos;
+  private final ListagemDeProdutoPorId listagemDeProdutoPorId;
+  private final ListagemDeProdutoPorCategoria listagemDeProdutoPorCategoria;
   private final AtualizacaoDeProduto atualizacaoDeProduto;
   private final ExclusaoDeProduto exclusaoDeProduto;
 
-  public ProdutoController(CadastroDeProduto cadastrarProduto, ListagemDeProduto listagemDeProduto,
-      AtualizacaoDeProduto atualizacaoDeProduto, ExclusaoDeProduto exclusaoDeProduto) {
+  public ProdutoController(CadastroDeProduto cadastrarProduto, ListagemDeProdutos listagemDeProdutos, ListagemDeProdutoPorId listagemDeProdutoPorId,
+      ListagemDeProdutoPorCategoria listagemDeProdutoPorCategoria, AtualizacaoDeProduto atualizacaoDeProduto, ExclusaoDeProduto exclusaoDeProduto) {
     this.cadastrarProduto = cadastrarProduto;
-    this.listagemDeProduto = listagemDeProduto;
+    this.listagemDeProdutos = listagemDeProdutos;
+    this.listagemDeProdutoPorId = listagemDeProdutoPorId;
+    this.listagemDeProdutoPorCategoria = listagemDeProdutoPorCategoria;
     this.atualizacaoDeProduto = atualizacaoDeProduto;
     this.exclusaoDeProduto = exclusaoDeProduto;
   }
@@ -57,7 +62,7 @@ public class ProdutoController {
   @Operation(summary = "Listar produto por Id")
   @GetMapping("/{id}")
   public ResponseEntity<DadosProduto> listarProduto(@PathVariable String id) {
-    Produto produto = listagemDeProduto.listarProdutoPorId(id);
+    Produto produto = listagemDeProdutoPorId.listarProdutoPorId(id);
 
     return Objects.nonNull(produto)
         ? ResponseEntity.ok(new DadosProduto(produto))
@@ -90,7 +95,7 @@ public class ProdutoController {
   @Operation(summary = "Listar todos os produtos")
   @GetMapping("/todos")
   public ResponseEntity<List<DadosProduto>> listarProdutos() {
-    List<Produto> produtos = listagemDeProduto.listarTodosOsProdutos();
+    List<Produto> produtos = listagemDeProdutos.listarTodosOsProdutos();
     return Objects.nonNull(produtos)
         ? ResponseEntity.ok(produtos.stream().map(DadosProduto::new).collect(Collectors.toList()))
         : ResponseEntity.notFound().build();
@@ -100,7 +105,7 @@ public class ProdutoController {
   @GetMapping
   public ResponseEntity<List<DadosProduto>> listarProdutosPorCategoria(
       @RequestParam("categoria") final Categoria categoria) {
-    List<Produto> produtos = listagemDeProduto.listaProdutosPorCategoria(categoria);
+    List<Produto> produtos = listagemDeProdutoPorCategoria.listaProdutosPorCategoria(categoria);
     return Objects.nonNull(produtos)
         ? ResponseEntity.ok(produtos.stream().map(DadosProduto::new).collect(Collectors.toList()))
         : ResponseEntity.notFound().build();
