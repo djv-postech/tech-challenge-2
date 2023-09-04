@@ -117,6 +117,7 @@ Exemplo Payload:
       "categoria":"BEBIDA"
     }
   ],
+  "valorTotal": 16.0,
   "pagamento":{
     "tipoPagamento":"QRCODE",
     "totalPagamento": 16.0,
@@ -127,7 +128,22 @@ Exemplo Payload:
   "dataCriacaoPedido":"2023-07-07T14:49:33.220Z"
 }
 ```
+#### **Pagamento**
+- Geração de QRCode para pagamento por número do pedido(integração com Mercado Pago)
+- Consulta do status do pagamento por número do pedido
+- Webhook para confirmação e atualização do pagamento
 
+Exemplo Payload :
+```javascript
+{
+  "id": "12345",
+  "action": "payment.created",
+  "date_created": "2023-09-04T02:12:43.814Z",
+  "data": {
+    "id": "999999999"
+  }
+}
+```
 
 ### [Tecnologias](#Tecnologias)
 ***
@@ -155,7 +171,8 @@ O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong>
    * kubectl apply -f fastfood-mongo-pvc.yml
    * kubectl apply -f fastfood-mongo-statefulset.yml
    * kubectl apply -f fastfood-deployment.yml
-   * kubectl apply -f fastfood-hpa.yml
+   * kubectl apply -f fastfood-hpa.yml 
+   * kubectl apply -f components.yaml
 
 <p>Obs: optamos por utilizar secrets do tipo Opaque como demonstrado nas aulas</p>
 
