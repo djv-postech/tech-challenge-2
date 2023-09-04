@@ -4,7 +4,6 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.ClienteRepository;
 
 public class AtualizacaoDeCliente {
-
     private final ClienteRepository clienteRepository;
 
     public AtualizacaoDeCliente(ClienteRepository clienteRepository){

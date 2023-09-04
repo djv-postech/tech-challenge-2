@@ -25,7 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class AtualizacaoDePedidoTest {
 
-  @InjectMocks AtualizacaoDePedido atualizacaoDePedido;
+  @InjectMocks private AtualizacaoDePedido atualizacaoDePedido;
   @Mock private PedidoRepository pedidoRepository;
 
   @DisplayName("Test - Deve atualizar status do pedido")
