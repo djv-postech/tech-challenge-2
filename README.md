@@ -178,7 +178,11 @@ O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong>
 
 <p>3.  Aplicação disponível em: http://localhost:8080/swagger-ui/index.html#/ .
 
-
+<strong>Como alternativa, temos o script "init.sh" que executa os comandos acima para iniciar o projeto. Para executá-lo: </strong>
+<p>1.  chmod +x init.sh
+<p>O comando acima dará a permissão de execução necessária para que o script rode corretamente.
+<p>2.  Para executar o script: ./init.sh
+<p> Feito isso, os comandos para geração da imagem e configuração do kubernetes serão executados (o resultado da execução será logado no console).
 
 ### [Grupo 7](#grupo-7)
 ***
