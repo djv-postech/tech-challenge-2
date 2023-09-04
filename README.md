@@ -157,10 +157,12 @@ Exemplo Payload :
 
 ### [Instruções para iniciar o projeto](#Instruções para iniciar o projeto)
 ***
-<p>1.  mvn clean install
+<p>1.  rm .idea
+<p> Este comando evita possíveis conflitos de configurações, previne problemas no build. 
+<p>2.  mvn clean install
 <p>O comando acima fará o build do projeto e também irá gerar a imagem com nome: <strong>techchallenge/fastfood:0.0.1-SNAPSHOT</strong>
 
-<p>2. Para subir a aplicação será necessário executar os comandos para geração dos artefatos do k8s:
+<p>3. Para subir a aplicação será necessário executar os comandos para geração dos artefatos do k8s:
 O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong> Os arquivos se encontram na pasta k8s dentro do modulo: <strong>fastfood-system-application</strong>
 <p> Lista ordenada dos artefatos a serem criados:
    
@@ -176,9 +178,14 @@ O comando em questão é o: <strong>kubectl apply -f NOME_ARTEFATO.yml </strong>
 
 <p>Obs: optamos por utilizar secrets do tipo Opaque como demonstrado nas aulas</p>
 
-<p>3.  Aplicação disponível em: http://localhost:8080/swagger-ui/index.html#/ .
+<p>4.  Aplicação disponível em: http://localhost:8080/swagger-ui/index.html#/ .
 
+<strong>Como alternativa, temos o script "init.sh" que executa os comandos acima para iniciar o projeto. Para executá-lo: </strong>
+<p>1.  chmod +x init.sh
+<p>O comando acima dará a permissão de execução necessária para que o script rode corretamente.
 
+<p>2.  Para executar o script: ./init.sh
+<p>Feito isso, os comandos para geração da imagem e configuração do kubernetes serão executados (o resultado da execução será logado no console).
 
 ### [Grupo 7](#grupo-7)
 ***

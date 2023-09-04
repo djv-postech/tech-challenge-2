@@ -16,28 +16,26 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class AtualizacaoDeClienteTest {
+class CadastroDeClienteTest {
 
-  @InjectMocks private AtualizacaoDeCliente atualizacaoDeCliente;
-
+  @InjectMocks private CadastroDeCliente cadastroDeCliente;
   @Mock private ClienteRepository clienteRepository;
 
-  @DisplayName("Test - Deve atualizar email do cliente")
+  @DisplayName("Test - Deve cadastrar cliente")
   @Test
-  public void
-      dadoIDDoClienteENovoEmailDoCliente_QuandoAtualizarCLiente_EntaoDeveRetornarClienteAtualizado() {
+  public void dadoCliente_QuandoCadastrarCliente_EntaoDeveRetornarClienteCadastrado() {
     // Dado
-    Cliente cliente =
+    final Cliente cliente =
         new Cliente("Cliente", new CPF("123.456.789-09"), new Email("cliente@email.com"));
 
-    given(clienteRepository.identificaClientePorCpf("123.456.789-09")).willReturn(cliente);
-    given(clienteRepository.atualizarCliente(cliente)).willReturn(cliente);
+    given(clienteRepository.cadastrarCliente(cliente)).willReturn(cliente);
 
     // Quando
-    Cliente clienteAtualizado = atualizacaoDeCliente.atualizarCliente("123.456.789-09", cliente);
+    Cliente clienteCadastrado = cadastroDeCliente.cadastrar(cliente);
 
     // Entao
     Assertions.assertThat(cliente).isNotNull();
-    Assertions.assertThat(clienteAtualizado.getEmail()).isEqualTo(cliente.getEmail());
+    Assertions.assertThat(clienteCadastrado.getEmail()).isEqualTo(cliente.getEmail());
+    Assertions.assertThat(clienteCadastrado.getCpf()).isEqualTo(cliente.getCpf());
   }
 }
