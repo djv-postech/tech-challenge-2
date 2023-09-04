@@ -117,6 +117,7 @@ Exemplo Payload:
       "categoria":"BEBIDA"
     }
   ],
+  "valorTotal": 16.0
   "pagamento":{
     "tipoPagamento":"QRCODE",
     "totalPagamento": 16.0,

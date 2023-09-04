@@ -21,7 +21,7 @@ public class QRCodeRequestConverter {
     QRCodeRequest QRCodeRequest = new QRCodeRequest();
     QRCodeRequest.setNumeroPedido(pedido.getNumeroPedido());
     QRCodeRequest.setTitulo(PEDIDO);
-    QRCodeRequest.setValorTotal(pedido.getPagamento().getTotalPagamento().intValueExact());
+    QRCodeRequest.setValorTotal(pedido.getValorTotal().intValueExact());
     QRCodeRequest.setDescricao(
         pedido.getProdutos().stream()
             .map(Produto::getNome)
