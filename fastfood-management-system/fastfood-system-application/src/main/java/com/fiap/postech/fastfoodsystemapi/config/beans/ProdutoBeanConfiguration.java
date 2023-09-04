@@ -4,7 +4,7 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.ProdutoReposi
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.AtualizacaoDeProduto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.CadastroDeProduto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ExclusaoDeProduto;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutoPorCategoria;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutosPorCategoria;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutoPorId;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutos;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +30,8 @@ public class ProdutoBeanConfiguration {
     }
 
     @Bean
-    public ListagemDeProdutoPorCategoria listagemDeProdutoPorCategoria(){
-    return new ListagemDeProdutoPorCategoria(produtoRepository);
+    public ListagemDeProdutosPorCategoria listagemDeProdutoPorCategoria(){
+    return new ListagemDeProdutosPorCategoria(produtoRepository);
     }
 
     @Bean

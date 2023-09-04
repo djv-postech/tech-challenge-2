@@ -7,7 +7,7 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.AtualizacaoDeProduto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.CadastroDeProduto;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ExclusaoDeProduto;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutoPorCategoria;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutosPorCategoria;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutoPorId;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.produto.ListagemDeProdutos;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,16 +27,16 @@ public class ProdutoController {
   private final CadastroDeProduto cadastrarProduto;
   private final ListagemDeProdutos listagemDeProdutos;
   private final ListagemDeProdutoPorId listagemDeProdutoPorId;
-  private final ListagemDeProdutoPorCategoria listagemDeProdutoPorCategoria;
+  private final ListagemDeProdutosPorCategoria listagemDeProdutosPorCategoria;
   private final AtualizacaoDeProduto atualizacaoDeProduto;
   private final ExclusaoDeProduto exclusaoDeProduto;
 
   public ProdutoController(CadastroDeProduto cadastrarProduto, ListagemDeProdutos listagemDeProdutos, ListagemDeProdutoPorId listagemDeProdutoPorId,
-      ListagemDeProdutoPorCategoria listagemDeProdutoPorCategoria, AtualizacaoDeProduto atualizacaoDeProduto, ExclusaoDeProduto exclusaoDeProduto) {
+      ListagemDeProdutosPorCategoria listagemDeProdutosPorCategoria, AtualizacaoDeProduto atualizacaoDeProduto, ExclusaoDeProduto exclusaoDeProduto) {
     this.cadastrarProduto = cadastrarProduto;
     this.listagemDeProdutos = listagemDeProdutos;
     this.listagemDeProdutoPorId = listagemDeProdutoPorId;
-    this.listagemDeProdutoPorCategoria = listagemDeProdutoPorCategoria;
+    this.listagemDeProdutosPorCategoria = listagemDeProdutosPorCategoria;
     this.atualizacaoDeProduto = atualizacaoDeProduto;
     this.exclusaoDeProduto = exclusaoDeProduto;
   }
@@ -105,7 +105,7 @@ public class ProdutoController {
   @GetMapping
   public ResponseEntity<List<DadosProduto>> listarProdutosPorCategoria(
       @RequestParam("categoria") final Categoria categoria) {
-    List<Produto> produtos = listagemDeProdutoPorCategoria.listaProdutosPorCategoria(categoria);
+    List<Produto> produtos = listagemDeProdutosPorCategoria.listaProdutosPorCategoria(categoria);
     return Objects.nonNull(produtos)
         ? ResponseEntity.ok(produtos.stream().map(DadosProduto::new).collect(Collectors.toList()))
         : ResponseEntity.notFound().build();

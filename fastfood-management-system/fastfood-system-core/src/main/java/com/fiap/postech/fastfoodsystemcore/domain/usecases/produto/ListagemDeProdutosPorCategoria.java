@@ -4,11 +4,11 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.Produto;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.produto.ProdutoRepository;
 import java.util.List;
 
-public class ListagemDeProdutoPorCategoria {
+public class ListagemDeProdutosPorCategoria {
 
     private final ProdutoRepository produtoRepository;
 
-    public ListagemDeProdutoPorCategoria(ProdutoRepository clienteRepository) {
+    public ListagemDeProdutosPorCategoria(ProdutoRepository clienteRepository) {
         this.produtoRepository = clienteRepository;
     }
 
