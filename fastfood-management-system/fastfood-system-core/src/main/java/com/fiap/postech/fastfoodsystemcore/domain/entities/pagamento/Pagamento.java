@@ -9,32 +9,32 @@ public class Pagamento {
   private String id;
   private BigDecimal totalPagamento;
   private TipoPagamento tipoPagamento;
-  private LocalDateTime dataPagamento;
+  private LocalDateTime dataEHorarioPagamento;
   private StatusPagamento statusPagamento;
 
   public Pagamento(
       String id,
       BigDecimal totalPagamento,
       TipoPagamento tipoPagamento,
-      LocalDateTime dataPagamento,
+      LocalDateTime dataEHorarioPagamento,
       StatusPagamento statusPagamento) {
 
     this.id = id;
     this.totalPagamento = totalPagamento;
     this.tipoPagamento = tipoPagamento;
-    this.dataPagamento = dataPagamento;
+    this.dataEHorarioPagamento = dataEHorarioPagamento;
     this.statusPagamento = statusPagamento;
   }
 
   public Pagamento() {}
 
   public Pagamento(
-      LocalDateTime dataPagamento,
+      LocalDateTime dataEHorarioPagamento,
       StatusPagamento statusPagamento,
       TipoPagamento tipoPagamento,
       BigDecimal totalPagamento) {
     this.id = UUID.randomUUID().toString();
-    this.dataPagamento = dataPagamento;
+    this.dataEHorarioPagamento = dataEHorarioPagamento;
     this.statusPagamento = statusPagamento;
     this.tipoPagamento = tipoPagamento;
     this.totalPagamento = totalPagamento;
@@ -68,12 +68,12 @@ public class Pagamento {
     this.tipoPagamento = tipoPagamento;
   }
 
-  public LocalDateTime getDataPagamento() {
-    return dataPagamento;
+  public LocalDateTime getDataEHorarioPagamento() {
+    return dataEHorarioPagamento;
   }
 
-  public void setDataPagamento(LocalDateTime dataPagamento) {
-    this.dataPagamento = dataPagamento;
+  public void setDataEHorarioPagamento(LocalDateTime dataEHorarioPagamento) {
+    this.dataEHorarioPagamento = dataEHorarioPagamento;
   }
 
   public void setStatusPagamento(StatusPagamento statusPagamento) {

@@ -20,7 +20,7 @@ public record DadosPagamento(
         dadosPagamento.getId(),
         dadosPagamento.getTotalPagamento(),
         dadosPagamento.getTipoPagamento(),
-        dadosPagamento.getDataPagamento(),
+        dadosPagamento.getDataEHorarioPagamento(),
         dadosPagamento.getStatusPagamento());
   }
 }

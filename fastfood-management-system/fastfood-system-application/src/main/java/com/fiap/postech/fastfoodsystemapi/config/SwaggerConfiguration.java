@@ -10,7 +10,6 @@ public class SwaggerConfiguration {
 
   @Bean
   public OpenAPI customOpenAPI() {
-    //FIXME Definir nome do sistema, colocar mais opçoes nos Swagger
     return new OpenAPI().info(new Info().title("Tech Challenge").version("1.0"));
   }
 

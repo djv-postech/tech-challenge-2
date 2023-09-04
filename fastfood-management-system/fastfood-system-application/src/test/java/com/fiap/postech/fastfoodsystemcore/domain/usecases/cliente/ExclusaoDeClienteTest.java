@@ -15,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class ExclusaoDeClienteTest {
   @InjectMocks private ExclusaoDeCliente exclusaoDeCliente;
-
   @Mock private ClienteRepository clienteRepository;
 
   @DisplayName("Test - Deve excluir cliente por CPF")

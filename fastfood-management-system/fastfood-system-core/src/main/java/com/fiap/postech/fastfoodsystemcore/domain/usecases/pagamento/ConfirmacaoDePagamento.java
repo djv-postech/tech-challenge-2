@@ -8,7 +8,7 @@ public class ConfirmacaoDePagamento {
 
   public Pagamento confirmarPagamento(Pagamento pagamento, LocalDateTime dataHorarioConfirmacao) {
     pagamento.setStatusPagamento(StatusPagamento.APROVADO);
-    pagamento.setDataPagamento(dataHorarioConfirmacao);
+    pagamento.setDataEHorarioPagamento(dataHorarioConfirmacao);
     return pagamento;
   }
 }

@@ -4,13 +4,13 @@ import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.PedidoReposito
 
 public class ExclusaoDePedido {
 
-    private final PedidoRepository pedidoRepository;
+  private final PedidoRepository pedidoRepository;
 
-    public ExclusaoDePedido(PedidoRepository pedidoRepository){
-        this.pedidoRepository = pedidoRepository;
-    }
+  public ExclusaoDePedido(PedidoRepository pedidoRepository) {
+    this.pedidoRepository = pedidoRepository;
+  }
 
-    public void excluirPedido(String idPedido){
-        this.pedidoRepository.excluirPedido(idPedido);
-    }
+  public void excluirPedido(String numeroPedido) {
+    pedidoRepository.excluirPedido(numeroPedido);
+  }
 }

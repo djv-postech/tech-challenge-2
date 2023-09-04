@@ -23,7 +23,6 @@ public class CadastroDeProduto {
 
   }
 
-  //TODO - criar VALIDADOR
   private boolean produtoJaCadastrado(Produto produto) {
     try {
       Produto produtoJaCadastrado = produtoRepository.listarProdutoPorNome(produto.getNome());

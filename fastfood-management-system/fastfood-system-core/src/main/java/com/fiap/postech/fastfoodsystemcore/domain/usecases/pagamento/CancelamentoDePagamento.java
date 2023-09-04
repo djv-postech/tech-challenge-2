@@ -8,7 +8,7 @@ public class CancelamentoDePagamento {
 
   public Pagamento cancelarPagamento(Pagamento pagamento) {
     pagamento.setStatusPagamento(StatusPagamento.CANCELADO);
-    pagamento.setDataPagamento(LocalDateTime.now());
+    pagamento.setDataEHorarioPagamento(LocalDateTime.now());
     return pagamento;
   }
 }
