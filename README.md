@@ -129,7 +129,7 @@ Exemplo Payload:
 }
 ```
 
-Obs.: Ao gerar o pedido, é retornado o ID gerado (númerodo pedido), é gerado também o QRCode para pagamento. O payload de resposta inclui as informações:
+Obs.: Ao cadastrar o pedido, é retornado o ID gerado (númerodo pedido), é gerado também o QRCode para pagamento. O payload de resposta inclui as informações:
 
 ```javascript
 {
@@ -155,7 +155,7 @@ Response:
 }
 ```
 
-Quando o pagamento é confirmado, a aplicação recebe via Webhook os dados de confirmação, request:
+Quando o pagamento é confirmado, a aplicação recebe via Webhook os dados da confirmação:
 
 Exemplo Payload :
 ```javascript
