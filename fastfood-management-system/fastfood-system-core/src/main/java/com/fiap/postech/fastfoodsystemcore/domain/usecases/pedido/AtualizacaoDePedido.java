@@ -24,11 +24,12 @@ public class AtualizacaoDePedido {
 
   public Pedido atualizarPedido(String numeroPedido, Pagamento pagamento) {
     final Pedido pedido = pedidoRepository.listarPedidoPorNumeroPedido(numeroPedido);
-    pedido.setPagamento(pagamento);
-    pedido.setStatus(
+    StatusPedido statusPedido =
         pagamento.getStatusPagamento().equals(StatusPagamento.APROVADO)
             ? StatusPedido.EM_PREPARACAO
-            : StatusPedido.FINALIZADO);
+            : pedido.getStatusPedido();
+    pedido.setPagamento(pagamento);
+    pedido.setStatus(statusPedido);
     return pedidoRepository.atualizarPedido(pedido);
   }
 }

@@ -128,10 +128,34 @@ Exemplo Payload:
   "dataCriacaoPedido":"2023-07-07T14:49:33.220Z"
 }
 ```
+
+Obs.: Ao gerar o pedido, é retornado o ID gerado (númerodo pedido), é gerado também o QRCode para pagamento. O payload de resposta inclui as informações:
+
+```javascript
+{
+ "id": "64f66c9be979c90af22730a9",
+  "qrCode": "00020101021243650016COM.MERCADOLIBRE0201306368c8a8ff3-39c8-40eb-a831-b72b68e7e5e6520400005303986580204BEFD"
+}
+```
 #### **Pagamento**
+A api de pagamentos possui as seguintes funcionalidades:
+
 - Geração de QRCode para pagamento por número do pedido(integração com Mercado Pago)
 - Consulta do status do pagamento por número do pedido
 - Webhook para confirmação e atualização do pagamento
+
+O código do QRCode é gerado no cadastro do pedido (checkout), sendo assim o pagamento é inicializado com o status "PROCESSANDO".
+Para consultar o status do pagamento, basta informar o número do pedido devolvido no checkout.
+
+Response:
+```javascript
+{
+  "numeroPedido": "64f66fc37ab088135a56873d",
+  "statusPagamento": "PROCESSANDO"
+}
+```
+
+Quando o pagamento é confirmado, a aplicação recebe via Webhook os dados de confirmação, request:
 
 Exemplo Payload :
 ```javascript
@@ -140,10 +164,23 @@ Exemplo Payload :
   "action": "payment.created",
   "date_created": "2023-09-04T02:12:43.814Z",
   "data": {
-    "id": "999999999"
+    "id": "64f66fc37ab088135a56873d"
   }
 }
 ```
+
+Este Webhook dispara os processos:
+- Confirmação de pagamento (alterado status para "APROVADO")
+- Atualização do pedido (alterado status para "EM_PREPARACAO", sinalizando que já é possível dar andamento na produção do pedido).
+
+Response:
+```javascript
+{
+  "numeroPedido": "64f66fc37ab088135a56873d",
+  "statusPagamento": "APROVADO"
+}
+```
+
 
 ### [Tecnologias](#Tecnologias)
 ***

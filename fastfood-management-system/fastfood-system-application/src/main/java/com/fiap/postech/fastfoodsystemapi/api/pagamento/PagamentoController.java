@@ -45,6 +45,8 @@ public class PagamentoController {
     final Pedido pedido =
         listagemDePedidoPorNumeroDePedido.listarPedidoPorNumeroPedido(numeroPedido);
     final String qrCode = criacaoDePagamento.gerarQrCodeParaPagamento(pedido);
+    final Pagamento pagamento = pedido.getPagamento();
+    atualizacaoDePedido.atualizarPedido(numeroPedido, pagamento);
     return ResponseEntity.ok(qrCode);
   }
 

@@ -6,6 +6,7 @@ import com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json.Saque
 import com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json.QRCodeRequest;
 import com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json.Item;
 import com.fiap.postech.fastfoodsysteminfra.gateway.feign.mercadopago.json.QRCodeResponse;
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class QRCodeRequestConverter {
     QRCodeRequest QRCodeRequest = new QRCodeRequest();
     QRCodeRequest.setNumeroPedido(pedido.getNumeroPedido());
     QRCodeRequest.setTitulo(PEDIDO);
-    QRCodeRequest.setValorTotal(pedido.getValorTotal().intValueExact());
+    QRCodeRequest.setValorTotal(pedido.getValorTotal().multiply(new BigDecimal("100")).intValue());
     QRCodeRequest.setDescricao(
         pedido.getProdutos().stream()
             .map(Produto::getNome)
@@ -34,10 +35,10 @@ public class QRCodeRequestConverter {
                 produto ->
                     new Item(
                         produto.getNome(),
-                        produto.getPreco().intValueExact(),
+                        produto.getPreco().multiply(new BigDecimal("100")).intValue(),
                         produto.getQuantidade(),
                         UNIDADE_DE_MEDIDA,
-                        (produto.getQuantidade() * produto.getPreco().intValueExact())))
+                        (produto.getQuantidade() * produto.getPreco().multiply(new BigDecimal("100")).intValue())))
             .collect(Collectors.toList()));
 
     QRCodeRequest.setSaque(new Saque(CASH_OUT));

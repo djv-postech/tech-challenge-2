@@ -1,6 +1,7 @@
 package com.fiap.postech.fastfoodsystemapi.config.beans;
 
 import com.fiap.postech.fastfoodsystemcore.domain.mercadoPago.MercadoPagoGateway;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pagamento.AtualizacaoDePagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pagamento.ConfirmacaoDePagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pagamento.CriacaoDePagamento;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,11 @@ public class PagamentoBeanConfiguration {
   @Bean
   public CriacaoDePagamento criacaoDePagamento() {
     return new CriacaoDePagamento(mercadoPagoGateway);
+  }
+
+  @Bean
+  public AtualizacaoDePagamento atualizacaoDePagamento() {
+    return new AtualizacaoDePagamento();
   }
 
   @Bean

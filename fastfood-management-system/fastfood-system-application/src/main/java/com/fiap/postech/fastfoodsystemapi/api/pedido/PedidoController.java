@@ -2,8 +2,11 @@ package com.fiap.postech.fastfoodsystemapi.api.pedido;
 
 import com.fiap.postech.fastfoodsystemapi.api.pedido.records.DadosCadastroPedido;
 import com.fiap.postech.fastfoodsystemapi.api.pedido.records.DadosPedido;
+import com.fiap.postech.fastfoodsystemcore.domain.entities.pagamento.Pagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.Pedido;
 import com.fiap.postech.fastfoodsystemcore.domain.entities.pedido.StatusPedido;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pagamento.AtualizacaoDePagamento;
+import com.fiap.postech.fastfoodsystemcore.domain.usecases.pagamento.CriacaoDePagamento;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.AtualizacaoDePedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.CadastroDePedido;
 import com.fiap.postech.fastfoodsystemcore.domain.usecases.pedido.ListagemDePedidoOrdenadosPorRecebimentoEStatus;
@@ -27,6 +30,10 @@ public class PedidoController {
   private final ListagemDePedidoPorNumeroDePedido listarPedidoPorNumeroPedido;
   private final ListagemDePedidoPorStatus listarPedidoPorStatus;
 
+  private final AtualizacaoDePagamento atualizacaoDePagamento;
+
+  private final CriacaoDePagamento criacaoDePagamento;
+
   private final ListagemDePedidoOrdenadosPorRecebimentoEStatus
       listagemDePedidoOrdenadosPorRecebimentoEStatus;
   private final AtualizacaoDePedido atualizacaoDePedido;
@@ -36,13 +43,17 @@ public class PedidoController {
       ListagemDePedidoPorNumeroDePedido listarPedidoPorNumeroPedido,
       ListagemDePedidoPorStatus listarPedidoPorStatus,
       ListagemDePedidoOrdenadosPorRecebimentoEStatus listagemDePedidoOrdenadosPorRecebimentoEStatus,
-      AtualizacaoDePedido atualizacaoDePedido) {
+      AtualizacaoDePedido atualizacaoDePedido,
+      CriacaoDePagamento criacaoDePagamento,
+      AtualizacaoDePagamento atualizacaoDePagamento) {
     this.cadastroDePedido = cadastroDePedido;
     this.listarPedidoPorNumeroPedido = listarPedidoPorNumeroPedido;
     this.listarPedidoPorStatus = listarPedidoPorStatus;
     this.listagemDePedidoOrdenadosPorRecebimentoEStatus =
         listagemDePedidoOrdenadosPorRecebimentoEStatus;
     this.atualizacaoDePedido = atualizacaoDePedido;
+    this.criacaoDePagamento = criacaoDePagamento;
+    this.atualizacaoDePagamento = atualizacaoDePagamento;
   }
 
   @Operation(summary = "Checkout de Pedidos")
@@ -53,7 +64,14 @@ public class PedidoController {
     Pedido pedidoCadastrado =
         cadastroDePedido.cadastrarPedido(dadosCadastroPedido.convertToPedido());
 
-    DadosPedido dadosPedido = new DadosPedido(pedidoCadastrado);
+    final String qrCode = criacaoDePagamento.gerarQrCodeParaPagamento(pedidoCadastrado);
+
+    final Pagamento pagamento = pedidoCadastrado.getPagamento();
+
+    atualizacaoDePagamento.atualizarPagamento(pagamento, pedidoCadastrado.getValorTotal());
+    atualizacaoDePedido.atualizarPedido(pedidoCadastrado.getNumeroPedido(), pagamento);
+
+    DadosPedido dadosPedido = new DadosPedido(pedidoCadastrado, qrCode);
 
     return ResponseEntity.ok().body(dadosPedido);
   }

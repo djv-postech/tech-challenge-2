@@ -21,7 +21,20 @@ public record DadosPedido(
     @JsonInclude(NON_NULL) DadosCliente cliente,
     DadosPagamento pagamento,
     StatusPedido status,
-    LocalDateTime dataCriacaoPedido) {
+    LocalDateTime dataCriacaoPedido,
+
+    @JsonInclude(NON_NULL) String qrCode) {
+
+  public DadosPedido(Pedido dadosPedido, String qrCode) {
+    this(
+        dadosPedido.getNumeroPedido(),
+        dadosPedido.getProdutos().stream().map(DadosProduto::new).collect(
+            Collectors.toList()),
+        isNull(dadosPedido.getCliente())? null: new DadosCliente(dadosPedido.getCliente()),
+        new DadosPagamento(dadosPedido.getPagamento()),
+        dadosPedido.getStatusPedido(),
+        dadosPedido.getDataCriacaoPedido(), qrCode);
+  }
 
   public DadosPedido(Pedido dadosPedido) {
     this(
@@ -31,6 +44,6 @@ public record DadosPedido(
         isNull(dadosPedido.getCliente())? null: new DadosCliente(dadosPedido.getCliente()),
         new DadosPagamento(dadosPedido.getPagamento()),
         dadosPedido.getStatusPedido(),
-        dadosPedido.getDataCriacaoPedido());
+        dadosPedido.getDataCriacaoPedido(), null);
   }
 }
