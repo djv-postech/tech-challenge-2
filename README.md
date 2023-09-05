@@ -1,4 +1,4 @@
-## [Tech Challenge - FastFood](#Tech Challenge)
+## Tech Challenge - FastFood
 
 Sistema para gerenciamento de pedidos
 
@@ -8,7 +8,7 @@ Sistema para gerenciamento de pedidos
 * [Módulo de Infra e Aplicação](#Módulo_De_Infra_E_Aplicacao)
 * [Módulo Core](#dominio)
 * [Tecnologias](#tecnologias)
-* [Instruções para iniciar o projeto](#instruções-para-iniciar-o-projeto)
+* [Instruções para iniciar o projeto](#instrucoes_para_iniciar_o_projeto)
 * [Grupo 7](#grupo-7)
 
 ***
@@ -192,7 +192,7 @@ Response:
 * Kubernetes
 
 
-### [Instruções para iniciar o projeto](#Instruções para iniciar o projeto)
+### [Instruções para iniciar o projeto](#Instrucoes_para_iniciar_o_projeto)
 ***
 <p>1.  rm .idea
 <p> Este comando evita possíveis conflitos de configurações, previne problemas no build. 
