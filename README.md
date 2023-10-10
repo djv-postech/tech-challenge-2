@@ -1,14 +1,14 @@
-## [Tech Challenge - FastFood](#Tech Challenge)
+## Tech Challenge - FastFood
 
 Sistema para gerenciamento de pedidos
 
 ### Índice
 
 * [Contexto](#contexto)
-* [Módulo de Infra e Aplicação](#Módulo_De_Infra_E_Aplicacao)
+* [Módulo de Infra e Aplicação](#modulo-de-infra-e-aplicacao)
 * [Módulo Core](#dominio)
 * [Tecnologias](#tecnologias)
-* [Instruções para iniciar o projeto](#instruções-para-iniciar-o-projeto)
+* [Instruções para iniciar o projeto](#instrucoes-para-iniciar-o-projeto)
 * [Grupo 7](#grupo-7)
 
 ***
@@ -22,7 +22,7 @@ dividir o sistema em módulos para manter, além de um isolamento lógico, tamb�
 * fastfood-system-core: módulo que contém a camada de domínio isolada do resto da aplicação.
 * fastfood-system-infra: módulo com as configurações de persistência e infraestrutura geral do projeto.
 
-### [Módulo de Infra e Aplicação](#Módulo_De_Infra_E_Aplicacao)
+### [Módulo de Infra e Aplicação](#modulo-de-infra-e-aplicacao)
 
 <p>Utilizamos o módulo de infra para criar as entidades e operações (implementações) de persistência de dados, criar classes
 de conversão para interação com domínio, além de definição de exceções para tratamento de erros. Nessa camada tomamos
@@ -192,7 +192,7 @@ Response:
 * Kubernetes
 
 
-### [Instruções para iniciar o projeto](#Instruções para iniciar o projeto)
+### [Instruções para iniciar o projeto](#instrucoes-para-iniciar-o-projeto)
 ***
 <p>1.  rm .idea
 <p> Este comando evita possíveis conflitos de configurações, previne problemas no build. 
