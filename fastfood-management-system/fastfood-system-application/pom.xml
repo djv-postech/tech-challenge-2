@@ -153,7 +153,6 @@
           </execution>
         </executions>
         <configuration>
-          <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
           <repository>soatpostech/fastfood</repository>
           <tag>latest</tag>
           <buildArgs>
