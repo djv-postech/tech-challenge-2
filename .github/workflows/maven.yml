@@ -29,7 +29,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jacoco-report
-        path: /fastfood-system-application/target/site/jacoco/
+        path: fastfood-management-system/fastfood-system-application/target/site/jacoco/
     
   
   build:
