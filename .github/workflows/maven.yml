@@ -22,7 +22,7 @@ jobs:
       with:
         generate-branches-badge: true
         jacoco-csv-file: >
-          fastfood-system-application/target/site/jacoco/jacoco.csv
+          fastfood-management-system/fastfood-system-application/target/site/jacoco/jacoco.csv
 
     - name: Log coverage percentage
       run: |
