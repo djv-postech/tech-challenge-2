@@ -8,3 +8,5 @@ jobs:
   ECS:
     runs-on: ubuntu-latest
     steps:
+    - name: Get Task File
+      run: aws ecs describe-task-definition --task-definition fastfood-management-task --query taskDefinition > task-definition.json
