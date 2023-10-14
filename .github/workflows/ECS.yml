@@ -19,4 +19,10 @@ jobs:
     - name: Get Task File
       run: aws ecs describe-task-definition --task-definition fastfood-management-task --query taskDefinition > task-definition.json
 
-  
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: fastfood-management
+        image: sdsdssdsdsd
