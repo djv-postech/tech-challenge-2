@@ -46,55 +46,55 @@ jobs:
     - name: Build with Maven
       run: cd fastfood-management-system && mvn clean install --file pom.xml
  
-  deploy_EKS:
-     needs: build
-     runs-on: ubuntu-latest
+  # deploy_EKS:
+  #    needs: build
+  #    runs-on: ubuntu-latest
      
-     steps:
+  #    steps:
    
-     - uses: actions/checkout@v3
+  #    - uses: actions/checkout@v3
  
-     - name: Configurando Credenciais AWS
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-         aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-         aws-region: us-east-1
+  #    - name: Configurando Credenciais AWS
+  #      uses: aws-actions/configure-aws-credentials@v1
+  #      with:
+  #        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+  #        aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+  #        aws-region: us-east-1
  
-     - run: git clone https://github.com/djv-postech/fastfood-management-ci-infra.git
+  #    - run: git clone https://github.com/djv-postech/fastfood-management-ci-infra.git
  
-     - name: Setup Terraform
-       uses: hashicorp/setup-terraform@v2.0.3
+  #    - name: Setup Terraform
+  #      uses: hashicorp/setup-terraform@v2.0.3
  
-     - run: terraform -chdir=fastfood-management-ci-infra init
+  #    - run: terraform -chdir=fastfood-management-ci-infra init
  
-     - run: terraform -chdir=fastfood-management-ci-infra apply  -auto-approve
+  #    - run: terraform -chdir=fastfood-management-ci-infra apply  -auto-approve
  
-     - run: echo "$(terraform -chdir=fastfood-management-ci-infra output -raw IP_DB)"
-       id: URLDB
+  #    - run: echo "$(terraform -chdir=fastfood-management-ci-infra output -raw IP_DB)"
+  #      id: URLDB
  
-     - name: Kubectl Tool
-       uses: Azure/setup-kubectl@v3
+  #    - name: Kubectl Tool
+  #      uses: Azure/setup-kubectl@v3
  
-     - run: aws sts get-caller-identity
+  #    - run: aws sts get-caller-identity
        
-     - run: aws eks update-kubeconfig --region us-east-1 --name fastfood-management-cluster
+  #    - run: aws eks update-kubeconfig --region us-east-1 --name fastfood-management-cluster
  
-     - run: kubectl get pods
+  #    - run: kubectl get pods
  
  
-     - run: kubectl delete secret MONGO_HOST  --ignore-not-found
-     - run: kubectl delete secret MONGO_USERNAME --ignore-not-found
-     - run: kubectl delete secret MONGO_PASSWORD --ignore-not-found
-     - run: kubectl delete secret MONGO_DB --ignore-not-found
+  #    - run: kubectl delete secret MONGO_HOST  --ignore-not-found
+  #    - run: kubectl delete secret MONGO_USERNAME --ignore-not-found
+  #    - run: kubectl delete secret MONGO_PASSWORD --ignore-not-found
+  #    - run: kubectl delete secret MONGO_DB --ignore-not-found
  
-     - run: kubectl create secret generic MONGO_HOST --from-literal=MONGO_HOST=${{ steps.URLDB.outputs.stdout }}
-     - run: kubectl create secret generic MONGO_USERNAME --from-literal=MONGO_USERNAME=${{secrets.MONGO_USERNAME}}
-     - run: kubectl create secret generic MONGO_PASSWORD --from-literal=MONGO_PASSWORD=${{secrets.MONGO_PASSWORD}}
-     - run: kubectl create secret generic MONGO_DB --from-literal=MONGO_DB=${{secrets.MONGO_DB}}
+  #    - run: kubectl create secret generic MONGO_HOST --from-literal=MONGO_HOST=${{ steps.URLDB.outputs.stdout }}
+  #    - run: kubectl create secret generic MONGO_USERNAME --from-literal=MONGO_USERNAME=${{secrets.MONGO_USERNAME}}
+  #    - run: kubectl create secret generic MONGO_PASSWORD --from-literal=MONGO_PASSWORD=${{secrets.MONGO_PASSWORD}}
+  #    - run: kubectl create secret generic MONGO_DB --from-literal=MONGO_DB=${{secrets.MONGO_DB}}
  
-     - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-deployment.yml
+  #    - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-deployment.yml
      
-     - run: kubectl set image deployment/fastfood-deployment fastfood-tech-challenge-container=soatpostech/fastfood:latest
+  #    - run: kubectl set image deployment/fastfood-deployment fastfood-tech-challenge-container=soatpostech/fastfood:latest
 
  
