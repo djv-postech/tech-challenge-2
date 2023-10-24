@@ -96,6 +96,7 @@ jobs:
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-secrets.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-secrets.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-svc.yml
+     - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-pv.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-svc.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-pvc.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-statefulset.yml
