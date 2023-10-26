@@ -46,7 +46,7 @@ jobs:
   #   - name: Build with Maven
   #     run: cd fastfood-management-system && mvn clean install --file pom.xml
  
-  deployEKS:
+  deploy_EKS:
      #needs: build
      runs-on: ubuntu-latest
      
