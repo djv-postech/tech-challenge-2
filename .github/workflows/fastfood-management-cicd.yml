@@ -46,7 +46,7 @@ jobs:
   #   - name: Build with Maven
   #     run: cd fastfood-management-system && mvn clean install --file pom.xml
  
-  deployEKS:
+  deploy_EKS:
      #needs: build
      runs-on: ubuntu-latest
      
@@ -96,9 +96,9 @@ jobs:
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-secrets.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-secrets.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-svc.yml
-     - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-sc.yml
+     # - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-sc.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-svc.yml
-     - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-pvc.yml
+     #- run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-pvc.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-statefulset.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-deployment.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-hpa.yml
