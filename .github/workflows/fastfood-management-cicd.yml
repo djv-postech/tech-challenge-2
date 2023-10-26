@@ -4,50 +4,50 @@ on:
   push:
 
 jobs:
-  # unit-tests:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: Set up JDK 17
-  #     uses: actions/setup-java@v3
-  #     with:
-  #       java-version: '17'
-  #       distribution: 'temurin'
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
 
-  #   - run: cd fastfood-management-system && mvn -B test
+    - run: cd fastfood-management-system && mvn -B test
 
-  #   - name: Generate JaCoCo Badge
-  #     id: jacoco
-  #     uses: cicirello/jacoco-badge-generator@v2
-  #     with:
-  #       generate-branches-badge: true
-  #       jacoco-csv-file: >
-  #         fastfood-management-system/fastfood-system-application/target/site/jacoco/jacoco.csv
+    - name: Generate JaCoCo Badge
+      id: jacoco
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        generate-branches-badge: true
+        jacoco-csv-file: >
+          fastfood-management-system/fastfood-system-application/target/site/jacoco/jacoco.csv
 
-  #   - name: Log coverage percentage
-  #     run: |
-  #       echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
-  #       echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
+    - name: Log coverage percentage
+      run: |
+        echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
+        echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
     
   
-  # build:
-  #   runs-on: ubuntu-latest
-  #   needs: unit-tests
+  build:
+    runs-on: ubuntu-latest
+    needs: unit-tests
     
-  #   steps:
+    steps:
    
-  #   - uses: actions/checkout@v3
-  #   - name: Set up JDK 17
-  #     uses: actions/setup-java@v3
-  #     with:
-  #       java-version: '17'
-  #       distribution: 'temurin'
-  #       cache: maven
-  #   - name: Build with Maven
-  #     run: cd fastfood-management-system && mvn clean install --file pom.xml
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: cd fastfood-management-system && mvn clean install --file pom.xml
  
   deploy_EKS:
-     #needs: build
+     needs: build
      runs-on: ubuntu-latest
      
      steps:
@@ -70,9 +70,6 @@ jobs:
  
      - run: terraform -chdir=fastfood-management-ci-infra apply  -auto-approve
  
-  #    - run: echo "$(terraform -chdir=fastfood-management-ci-infra output -raw IP_DB)"
-  #      id: URLDB
- 
      - name: Kubectl Tool
        uses: Azure/setup-kubectl@v3
  
@@ -82,28 +79,15 @@ jobs:
  
      - run: kubectl get svc
  
- 
-  #    - run: kubectl delete secret MONGO_HOST  --ignore-not-found
-  #    - run: kubectl delete secret MONGO_USERNAME --ignore-not-found
-  #    - run: kubectl delete secret MONGO_PASSWORD --ignore-not-found
-  #    - run: kubectl delete secret MONGO_DB --ignore-not-found
- 
-  #    - run: kubectl create secret generic MONGO_HOST --from-literal=MONGO_HOST=${{ steps.URLDB.outputs.stdout }}
-  #    - run: kubectl create secret generic MONGO_USERNAME --from-literal=MONGO_USERNAME=${{secrets.MONGO_USERNAME}}
-  #    - run: kubectl create secret generic MONGO_PASSWORD --from-literal=MONGO_PASSWORD=${{secrets.MONGO_PASSWORD}}
-  #    - run: kubectl create secret generic MONGO_DB --from-literal=MONGO_DB=${{secrets.MONGO_DB}}
- 
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-secrets.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-secrets.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-svc.yml
      # - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-sc.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-svc.yml
-     #- run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-pvc.yml
+     # - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-pvc.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-mongo-statefulset.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-deployment.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/fastfood-hpa.yml
      - run: kubectl apply -f fastfood-management-ci-infra/k8s/components.yaml
-     
-  #    - run: kubectl set image deployment/fastfood-deployment fastfood-tech-challenge-container=soatpostech/fastfood:latest
 
  
