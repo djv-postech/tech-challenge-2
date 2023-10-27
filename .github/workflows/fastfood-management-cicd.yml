@@ -47,7 +47,7 @@ jobs:
       run: cd fastfood-management-system && mvn clean install -DskipTests --file pom.xml
    
     - name: Send image to DockerHub
-      run: mvn dockerfile:push
+      run: cd fastfood-management-system && mvn dockerfile:push
  
   # deployEKS:
   #    needs: build
