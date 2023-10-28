@@ -104,7 +104,7 @@ jobs:
       
   
   deployEKS:
-      needs: build
+      needs: docker
       runs-on: ubuntu-latest
      
       steps:
