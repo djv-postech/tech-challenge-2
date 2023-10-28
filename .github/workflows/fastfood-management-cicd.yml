@@ -103,7 +103,7 @@ jobs:
 
       
   
-  deployEKS:
+  deploy_EKS:
       #needs: build
       runs-on: ubuntu-latest
      
