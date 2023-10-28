@@ -31,5 +31,5 @@ mercado:
     client:
       url: https://api.mercadopago.com/instore/orders/qr/seller/collectors
       authToken: ${MP_PAYMENT_TOKEN}
-      userId: 479782134
-      externalPosId: SUC001POS001
+      userId: ${MP_USER_ID}
+      externalPosId: ${MP_EXTERNAL_POS_ID}
