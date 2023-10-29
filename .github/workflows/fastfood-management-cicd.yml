@@ -130,7 +130,7 @@ jobs:
       - run: aws eks update-kubeconfig --region us-east-1 --name fastfood-management-cluster
 
       - run: cd fastfood-management-ci-infra
-      - run: chmod 755 script.sh && ./script.sh
+      - run: chmod 755 init.sh && ./init.sh
       
 
  
