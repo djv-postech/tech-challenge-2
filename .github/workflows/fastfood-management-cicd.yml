@@ -87,19 +87,19 @@ jobs:
      
      steps:
       - uses: actions/checkout@v3
-      - run: cd fastfood-management-system/fastfood-system-application
       - uses: kciter/aws-ecr-action@v4
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-          path: ./fastfood-system-application
+          dockerfile: ./fastfood-system-application/Dockerfile
           repo: soatpostech/fastfood
           region: us-east-1
           tags: latest
           create_repo: true
           image_scanning_configuration: false
           set_repo_policy: false
+          path: ./fastfood-system-application
          
 
       
