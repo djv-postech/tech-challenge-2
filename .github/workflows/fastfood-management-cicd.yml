@@ -82,6 +82,7 @@ jobs:
       run: cd fastfood-management-system && mvn clean install -DskipTests --file pom.xml
 
   docker:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       -
