@@ -104,7 +104,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./fastfood-system-application
+          context: ./fastfood-system-application/Dockerfile
           push: true
           tags: soatpostech/fastfood:latest
          
