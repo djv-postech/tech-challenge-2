@@ -99,7 +99,7 @@ jobs:
           create_repo: true
           image_scanning_configuration: false
           set_repo_policy: false
-          path: ./fastfood-system-application
+          path: ./fastfood-management-system/fastfood-system-application
          
 
       
