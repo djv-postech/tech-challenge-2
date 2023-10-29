@@ -128,9 +128,9 @@ jobs:
       - run: aws sts get-caller-identity
        
       - run: aws eks update-kubeconfig --region us-east-1 --name fastfood-management-cluster
-
-      - run: cd fastfood-management-ci-infra
-      - run: chmod 755 init.sh && ./init.sh
+      
+      - run: chmod 755 fastfood-management-ci-infra/init.sh
+      - run: cd fastfood-management-ci-infra && ./init.sh
       
 
  
