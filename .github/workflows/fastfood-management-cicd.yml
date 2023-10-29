@@ -130,8 +130,7 @@ jobs:
       - run: aws eks update-kubeconfig --region us-east-1 --name fastfood-management-cluster
 
       - name: Deploy de artefatos K8s
-      - run: cd fastfood-management-ci-infra
-      - run: chmod 755 script.sh && ./script.sh
+      - run: cd fastfood-management-ci-infra && chmod 755 script.sh && ./script.sh
       
 
  
