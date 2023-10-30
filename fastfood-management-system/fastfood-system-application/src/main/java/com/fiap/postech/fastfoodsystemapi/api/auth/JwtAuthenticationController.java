@@ -27,7 +27,7 @@ public class JwtAuthenticationController {
     }
 
     @Operation(summary = "Gerar novo token")
-    @GetMapping(value = "/gerar-token/{cpf}")
+    @GetMapping(value = "/gerarToken/{cpf}")
     public ResponseEntity<?> gerarToken(@PathVariable String cpf) throws Exception {
 
         //TODO - Criar validaçao de cliente, buscar cpf na base, tratamento para caso cliente exista, caso nao exista, etc
