@@ -28,7 +28,6 @@ public class JwtAuthenticationController {
     @Operation(summary = "Gerar novo token")
     @GetMapping(value = "/autenticar/{cpf}")
     public ResponseEntity<?> gerarToken(@PathVariable String numeroCPF) {
-
         CPF cpf = new CPF(numeroCPF);
 
         String token = jwtTokenUtil.gerarToken(cpf.getNumero());
