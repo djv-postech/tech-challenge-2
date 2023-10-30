@@ -1,39 +1,38 @@
 package com.fiap.postech.fastfoodsystemapi.api.auth;
 
 
-import com.fiap.postech.fastfoodsysteminfra.security.JwtTokenUtil;
+import com.fiap.postech.fastfoodsystemcore.domain.vo.CPF;
+import com.fiap.postech.fastfoodsysteminfra.security.JwtTokenUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-//FIXME - Organizar pacotes, anotaçoes..
+import javax.validation.Valid;
+
 @RestController
-@CrossOrigin
+@RequestMapping("/autenticacao")
 @Tag(name = "Autenticação", description = "Rest api para operações de gerenciamento de json web tokens.")
 public class JwtAuthenticationController {
 
+
+    //FIXME - Criar bean de config
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    JwtTokenUtils jwtTokenUtil;
 
     @Operation(summary = "Validar token")
     @GetMapping("/validar/{token}")
     public boolean validarToken(@PathVariable String token) {
-        return jwtTokenUtil.validateToken(token);
+        return jwtTokenUtil.validarToken(token);
     }
 
     @Operation(summary = "Gerar novo token")
-    @GetMapping(value = "/gerarToken/{cpf}")
-    public ResponseEntity<?> gerarToken(@PathVariable String cpf) throws Exception {
+    @GetMapping(value = "/autenticar/{cpf}")
+    public ResponseEntity<?> gerarToken(@PathVariable CPF cpf) {
 
-        //TODO - Criar validaçao de cliente, buscar cpf na base, tratamento para caso cliente exista, caso nao exista, etc
+        String token = jwtTokenUtil.gerarToken(cpf.getNumero());
 
-        String authToken = jwtTokenUtil.generateToken(cpf);
-
-        return ResponseEntity.ok(new JwtResponse(authToken));
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 }
