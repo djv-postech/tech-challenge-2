@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Autenticação", description = "Rest api para operações de gerenciamento de json web tokens.")
 public class JwtAuthenticationController {
 
-
     //FIXME - Criar bean de config
     @Autowired
     JwtTokenUtils jwtTokenUtil;
