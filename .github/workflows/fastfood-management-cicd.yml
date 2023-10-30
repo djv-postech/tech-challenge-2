@@ -93,7 +93,7 @@ jobs:
       run: cd fastfood-management-system/fastfood-system-application && mvn dockerfile:push
 
   
-  DeployEKS:
+  Deploy_EKS:
       needs: Build
       runs-on: ubuntu-latest
      
