@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping("/autenticacao")
 @Tag(name = "Autenticação", description = "Rest api para operações de gerenciamento de json web tokens.")
