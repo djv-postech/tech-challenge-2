@@ -2,6 +2,8 @@ name: fastfood-management-CICD
 
 on:
   push:
+     branches:
+       - main
 
 jobs:
  
