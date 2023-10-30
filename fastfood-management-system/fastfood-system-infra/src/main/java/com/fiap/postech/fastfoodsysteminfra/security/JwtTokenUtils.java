@@ -1,7 +1,5 @@
 package com.fiap.postech.fastfoodsysteminfra.security;
 
-import com.fiap.postech.fastfoodsystemcore.domain.entities.cliente.Cliente;
-import com.fiap.postech.fastfoodsystemcore.domain.usecases.cliente.*;
 import com.fiap.postech.fastfoodsysteminfra.persistence.exception.NotFoundException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -25,12 +23,12 @@ public class JwtTokenUtils implements Serializable {
 
     private static final String CLIENTE_NAO_IDENTIFICADO = "CLIENTE_NAO_IDENTIFICADO ";
 
-    private final IdentificacaoDeCliente identificacaoDeCliente;
+//    private final IdentificacaoDeCliente identificacaoDeCliente;
 
-    public JwtTokenUtils(
-            IdentificacaoDeCliente identificacaoDeCliente) {
-        this.identificacaoDeCliente = identificacaoDeCliente;
-    }
+//    public JwtTokenUtils(
+//            IdentificacaoDeCliente identificacaoDeCliente) {
+//        this.identificacaoDeCliente = identificacaoDeCliente;
+//    }
 
     @Value("${jwt.secret}")
     private String secret;
@@ -60,8 +58,9 @@ public class JwtTokenUtils implements Serializable {
     public String gerarToken(String cpf) {
         String usuario;
         try {
-            Cliente cliente = identificacaoDeCliente.identificarPorCpf(cpf);
-            usuario = cliente.getNome();
+//            Cliente cliente = identificacaoDeCliente.identificarPorCpf(cpf);
+//            usuario = cliente.getNome();
+            usuario = "Teste";
         } catch (NotFoundException ex) {
             usuario = CLIENTE_NAO_IDENTIFICADO;
         }
