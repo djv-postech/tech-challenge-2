@@ -2,12 +2,11 @@ server.port: 8080
 spring:
   data:
     mongodb:
-      host: ${MONGO_HOST:localhost}
-      username: ${MONGO_USERNAME:""}
+      user: ${MONGO_USERNAME:""}
       password: ${MONGO_PASSWORD:""}
       database: ${MONGO_DB:gestaoDePedidos}
+      uri: mongodb+srv://${spring.data.mongodb.user}:${spring.data.mongodb.password}@fastfood-management-clu.d9zacsh.mongodb.net
       port: 27017
-      authentication-database: admin
 
 management:
   endpoint:
