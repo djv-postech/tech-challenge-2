@@ -5,7 +5,7 @@ spring:
       user: ${MONGO_USERNAME:""}
       password: ${MONGO_PASSWORD:""}
       database: ${MONGO_DB:gestaoDePedidos}
-      uri: mongodb+srv://${spring.data.mongodb.user}:${spring.data.mongodb.password}@cluster-gestao-de-pedid.dvnmidl.mongodb.net
+      uri: mongodb+srv://${spring.data.mongodb.user}:${spring.data.mongodb.password}@cluster-gestao-de-pedid.zzyekyk.mongodb.net
       port: 27017
 
 management:
